@@ -1,0 +1,4 @@
+.idea
+**/*.ignore
+**/*.ignore.*
+**/node_modules
