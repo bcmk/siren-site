@@ -7,11 +7,14 @@ FROM golang:1.24.5-alpine
 WORKDIR /app
 COPY go.mod go.sum ./
 RUN go mod download
-COPY . .
 RUN apk add bash git
-RUN ./scripts/build-all
+COPY cmd/ cmd/
+COPY sitelib/ sitelib/
+COPY scripts/ scripts/
+
+ARG SIREN_SITE_VERSION=devel
+RUN ./scripts/build-all "$SIREN_SITE_VERSION"
 COPY --from=frontend /app/node_modules cmd/site/node_modules
-RUN cp site cmd/site
 
 WORKDIR /app/cmd/site
 CMD ["./site", "/app/config/config.yaml"]

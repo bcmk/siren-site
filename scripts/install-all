@@ -3,4 +3,6 @@ set -euo pipefail
 
 cur="$(dirname "$(readlink -f "$0")")"
 cd "$cur/.."
-go install -ldflags="-s -X 'github.com/bcmk/siren/lib/cmdlib.Version=$(scripts/describe-version)'" ./...
+
+SIREN_SITE_VERSION="$1"
+go install -ldflags="-s -X 'github.com/bcmk/siren/lib/cmdlib.Version=${SIREN_SITE_VERSION}'" ./...

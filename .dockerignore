@@ -2,3 +2,4 @@
 **/*.ignore
 **/*.ignore.*
 **/node_modules
+cmd/site/site
