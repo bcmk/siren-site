@@ -26,7 +26,7 @@ import (
 	"github.com/bcmk/siren/lib/cmdlib"
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
-	"github.com/jackc/pgx/v5"
+	"github.com/jackc/pgx/v5/pgxpool"
 	"github.com/tdewolff/minify/v2"
 	hmin "github.com/tdewolff/minify/v2/html"
 
@@ -36,7 +36,7 @@ import (
 type server struct {
 	cfg          sitelib.Config
 	enabledPacks []sitelib.PackV2
-	db           *pgx.Conn
+	db           *pgxpool.Pool
 	packs        []sitelib.PackV2
 
 	enIndexTemplate    *ht.Template
@@ -500,7 +500,7 @@ func main() {
 	srv.fillTemplates()
 	srv.fillEnabledPacks()
 	srv.fillCSS()
-	db, err := pgx.Connect(context.Background(), srv.cfg.ConnectionString)
+	db, err := pgxpool.New(context.Background(), srv.cfg.ConnectionString)
 	checkErr(err)
 	srv.db = db
 	srv.createDatabase()
