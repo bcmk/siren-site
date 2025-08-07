@@ -6,6 +6,6 @@
     "bootstrap": "^5.1.0"
   },
   "devDependencies": {
-    "purgecss": "^4.0.3"
+    "purgecss": "^7.0.2"
   }
 }
