@@ -22,7 +22,7 @@ import (
 	"time"
 
 	"github.com/aohorodnyk/mimeheader"
-	"github.com/bcmk/siren-site/sitelib"
+	"github.com/bcmk/siren-site/v3/sitelib"
 	"github.com/bcmk/siren/lib/cmdlib"
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
