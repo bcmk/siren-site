@@ -44,6 +44,7 @@ type Config struct {
 	BucketAccessKey  string `yaml:"bucket_access_key"`
 	BucketSecretKey  string `yaml:"bucket_secret_key"`
 	BaseBucketURL    string `yaml:"base_bucket_url"`
+	AssetsBucketURL  string `yaml:"assets_bucket_url"`
 	Debug            bool   `yaml:"debug"`
 }
 

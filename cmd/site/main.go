@@ -211,6 +211,7 @@ func (s *server) tparams(r *http.Request, more map[string]interface{}) map[strin
 	}
 	res["img_exts"] = imgExts
 	res["chic_bucket_url"] = s.cfg.BaseBucketURL
+	res["assets_bucket_url"] = s.cfg.AssetsBucketURL
 	return res
 }
 
