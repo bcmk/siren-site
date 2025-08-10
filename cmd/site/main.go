@@ -50,8 +50,6 @@ type server struct {
 	enCodeTemplate     *ht.Template
 	ruCodeTemplate     *ht.Template
 	bioHeaderRemover   string
-
-	css string
 }
 
 type likeForPack struct {
@@ -190,7 +188,6 @@ func getLangBaseURL(url url.URL, baseDomain string, baseURL string) string {
 
 func (s *server) tparams(r *http.Request, more map[string]interface{}) map[string]interface{} {
 	res := map[string]interface{}{}
-	res["css"] = ht.CSS(s.css)
 	urlCopy := *r.URL
 	res["full_path"] = urlCopy.String()
 	urlCopy.Host = r.Host
@@ -479,12 +476,6 @@ func (s *server) fillEnabledPacks() {
 	s.enabledPacks = packs
 }
 
-func (s *server) fillCSS() {
-	bs, err := os.ReadFile("wwwroot/styles.css")
-	checkErr(err)
-	s.css = string(bs)
-}
-
 func main() {
 	linf("starting...")
 	flag.Parse()
@@ -499,7 +490,6 @@ func main() {
 	srv.fillRawFiles()
 	srv.fillTemplates()
 	srv.fillEnabledPacks()
-	srv.fillCSS()
 	db, err := pgxpool.New(context.Background(), srv.cfg.ConnectionString)
 	checkErr(err)
 	srv.db = db
@@ -523,7 +513,7 @@ func main() {
 	r.Handle("/chic/like/{pack}", srv.measure(http.HandlerFunc(srv.likeHandler)))
 
 	r.PathPrefix("/icons/").Handler(http.StripPrefix("/icons", cacheControlHandler(http.FileServer(http.Dir("icons")), 120)))
-	r.PathPrefix("/node_modules/").Handler(http.StripPrefix("/node_modules", cacheControlHandler(handlers.CompressHandler(http.FileServer(http.Dir("node_modules"))), 120)))
+	r.PathPrefix("/static/").Handler(http.StripPrefix("/static", cacheControlHandler(handlers.CompressHandler(http.FileServer(http.Dir("static"))), 120)))
 
 	r.Handle("/ru", newRedirectSubdHandler("ru", "", http.StatusMovedPermanently))
 	r.Handle("/ru.html", newRedirectSubdHandler("ru", "", http.StatusMovedPermanently))

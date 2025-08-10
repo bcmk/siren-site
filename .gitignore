@@ -1,8 +1,7 @@
-*
-!*/
-!*.*
-.idea/
-.DS_Store
 ?*.ignore
 ?*.ignore.?*
-!Dockerfile
+/.idea/
+.DS_Store
+/cmd/site/node_modules/
+/cmd/site/site
+/cmd/site/static

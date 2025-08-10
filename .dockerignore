@@ -1,5 +1,6 @@
 .idea
 **/*.ignore
 **/*.ignore.*
-**/node_modules
+cmd/site/node_modules/
 cmd/site/site
+cmd/site/static/

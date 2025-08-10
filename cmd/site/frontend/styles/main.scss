@@ -1,20 +1,20 @@
-$fa-font-path: "/node_modules/@fortawesome/fontawesome-free/webfonts";
+$fa-font-path: "@fortawesome/fontawesome-free/webfonts";
 $btn-border-radius: 13px;
 $input-placeholder-color: #aaa;
 $container-max-widths: (sm: 540px, md: 720px, lg: 860px, xl: 900px);
 $dark: #3a3a3a;
 
-@use '../node_modules/@fontsource/montserrat/scss/mixins' as Montserrat;
-@use '../node_modules/@fontsource/jetbrains-mono/scss/mixins' as JetBrainsMono;
+@use '@fontsource/montserrat/scss/mixins' as Montserrat;
+@use '@fontsource/jetbrains-mono/scss/mixins' as JetBrainsMono;
 
-@import '../node_modules/bootstrap/scss/bootstrap';
-@import '../node_modules/@fortawesome/fontawesome-free/scss/fontawesome';
-@import '../node_modules/@fortawesome/fontawesome-free/scss/solid';
-@import '../node_modules/@fortawesome/fontawesome-free/scss/brands';
+@import 'bootstrap/scss/bootstrap';
+@import '@fortawesome/fontawesome-free/scss/fontawesome';
+@import '@fortawesome/fontawesome-free/scss/solid';
+@import '@fortawesome/fontawesome-free/scss/brands';
 @import 'switch';
 @import 'chic';
 
-$fontDir: "/node_modules/@fontsource/montserrat/files";
+$fontDir: "@fontsource/montserrat/files";
 @include Montserrat.fontFace($weight: 400, $fontDir: $fontDir);
 @include Montserrat.fontFace($weight: 500, $fontDir: $fontDir);
 @include Montserrat.fontFace($weight: 700, $fontDir: $fontDir);
@@ -22,7 +22,7 @@ $fontDir: "/node_modules/@fontsource/montserrat/files";
 @include Montserrat.fontFace($weight: 500, $fontDir: $fontDir, $style: italic);
 @include Montserrat.fontFace($weight: 700, $fontDir: $fontDir, $style: italic);
 
-$fontDir: "/node_modules/@fontsource/jetbrains-mono/files";
+$fontDir: "@fontsource/jetbrains-mono/files";
 @include JetBrainsMono.fontFace($weight: 400, $fontDir: $fontDir);
 @include JetBrainsMono.fontFace($weight: 700, $fontDir: $fontDir, $style: italic);
 

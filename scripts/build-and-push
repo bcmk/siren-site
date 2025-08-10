@@ -7,6 +7,6 @@ if ! [[ "$1" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
     exit 1
 fi
 
-docker buildx build --platform linux/amd64 --build-arg SIREN_SITE_VERSION="${1#v}" -t "site:$1" -t "registry.digitalocean.com/reg-xiren/site:$1" .
+docker buildx build --platform linux/amd64 --build-arg SIREN_SITE_VERSION="${1#v}" -t "site:$1" -t "registry.digitalocean.com/reg-xiren/site:$1" --progress=plain .
 docker push "registry.digitalocean.com/reg-xiren/site:$1"
 ./scripts/registry-cleanup
