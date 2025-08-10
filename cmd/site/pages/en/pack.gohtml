@@ -5,7 +5,7 @@
 {{ $params := .params }}
 {{ $likes := .likes }}
 {{ $img_exts := .img_exts }}
-{{ $base_bucket_url := .base_bucket_url }}
+{{ $chic_bucket_url := .chic_bucket_url }}
 
 <html lang="en" xmlns:og="http://ogp.me/ns#">
 <head>
@@ -72,7 +72,7 @@
                     <div class="row mt-2"/>
                         <div class="d-flex col-12 col-lg-9">
                             <div class="d-flex align-self-center form-icon">
-                                <img src="{{ .ctx.base_bucket_url }}/{{ .ctx.pack.Name }}/{{ versioned .ctx.pack .name }}.{{ index .ctx.img_exts .ctx.pack.FinalType }}"
+                                <img src="{{ .ctx.chic_bucket_url }}/{{ .ctx.pack.Name }}/{{ versioned .ctx.pack .name }}.{{ index .ctx.img_exts .ctx.pack.FinalType }}"
                                      alt=""
                                      style="height: {{ .ctx.pack.Scale }}%; width: auto;"
                                      class="align-self-center">
@@ -113,7 +113,7 @@
                     <div class="row mt-2"/>
                         <div class="d-flex col-12 col-lg-9">
                             <div class="d-flex align-self-center form-icon">
-                                <img src="{{ $base_bucket_url }}/{{ $pack.Name }}/{{ versioned $pack "fanclub" }}.{{ index $img_exts $pack.FinalType }}"
+                                <img src="{{ $chic_bucket_url }}/{{ $pack.Name }}/{{ versioned $pack "fanclub" }}.{{ index $img_exts $pack.FinalType }}"
                                      alt=""
                                      style="height: {{ $pack.Scale }}%;"
                                      class="align-self-center">

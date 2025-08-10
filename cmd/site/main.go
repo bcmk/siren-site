@@ -210,7 +210,7 @@ func (s *server) tparams(r *http.Request, more map[string]interface{}) map[strin
 		imgExts["png"] = "svgz"
 	}
 	res["img_exts"] = imgExts
-	res["base_bucket_url"] = s.cfg.BaseBucketURL
+	res["chic_bucket_url"] = s.cfg.BaseBucketURL
 	return res
 }
 
