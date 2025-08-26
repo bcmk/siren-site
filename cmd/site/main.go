@@ -7,7 +7,6 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
-	"flag"
 	"fmt"
 	ht "html/template"
 	"io"
@@ -34,7 +33,7 @@ import (
 )
 
 type server struct {
-	cfg          sitelib.Config
+	cfg          *sitelib.Config
 	enabledPacks []sitelib.PackV2
 	db           *pgxpool.Pool
 	packs        []sitelib.PackV2
@@ -479,12 +478,8 @@ func (s *server) fillEnabledPacks() {
 
 func main() {
 	linf("starting...")
-	flag.Parse()
-	if flag.NArg() != 1 {
-		panic("usage: site <config>")
-	}
-	srv := &server{cfg: sitelib.ReadConfig(flag.Arg(0))}
-	srv.packs = sitelib.ParsePacksV2(&srv.cfg)
+	srv := &server{cfg: sitelib.ReadConfig()}
+	srv.packs = sitelib.ParsePacksV2(srv.cfg)
 	if len(srv.packs) > 2 {
 		srv.packs = append([]sitelib.PackV2{srv.packs[len(srv.packs)-1]}, srv.packs[:len(srv.packs)-1]...)
 	}

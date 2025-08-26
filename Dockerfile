@@ -26,4 +26,5 @@ COPY --from=gobuilder /app/cmd/site/site ./site
 COPY --from=gobuilder /app/cmd/site/icons/ ./icons/
 COPY --from=gobuilder /app/cmd/site/pages/ ./pages/
 COPY --from=frontend /app/static ./static
-CMD ["./site", "/app/config/config.yaml"]
+ENTRYPOINT ["./site"]
+CMD ["-c", "/app/config/config.yaml"]

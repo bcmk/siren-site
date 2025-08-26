@@ -54,10 +54,6 @@ module.exports = {
       safelist: {
         standard: [
           "tbody", "tfoot",
-          // /^fa-/, /^svg-inline--fa/, /^sr-only/,
-          // /^modal/, /^fade/, /^show/, /^collapse/, /^collapsing/,
-          // /^dropdown/, /^tooltip/, /^popover/, /^offcanvas/, /^toast/,
-          // /^alert/, /^btn-/, /^bg-/, /^text-/, /^shadow/,
         ]
       }
     })
