@@ -65,7 +65,7 @@ module.exports = {
         appName: 'SIREN',
         appDescription: 'The Telegram bot for webcast alerts',
         developerName: 'bcmk',
-        background: '#ddd',
+        background: 'transparent',
         theme_color: '#000',
         icons: {
           coast: false,
