@@ -1,7 +1,6 @@
 {{ define "head" }}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon shortcut" type="image/svg+xml" href="/icons/siren-tri.svg">
     <link rel="preload" as="font" type="font/woff2" crossorigin href="/static/fonts/fa-brands-400.woff2" />
     <link rel="preload" as="font" type="font/woff2" crossorigin href="/static/fonts/fa-solid-900.woff2" />
     <link rel="preload" as="font" type="font/woff2" crossorigin href="/static/fonts/montserrat-latin-400-normal.woff2" />
@@ -13,4 +12,5 @@
     <link rel="preload" as="font" type="font/woff2" crossorigin href="/static/fonts/jetbrains-mono-latin-400-normal.woff2" />
     <link rel="preload" as="font" type="font/woff2" crossorigin href="/static/fonts/jetbrains-mono-latin-700-italic.woff2" />
     <link rel="stylesheet" href="/static/style.css">
+    {{- raw_html .partial_favicons_html -}}
 {{ end }}

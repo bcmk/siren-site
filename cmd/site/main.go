@@ -1,4 +1,3 @@
-// Main site executable
 package main
 
 import (
@@ -38,17 +37,18 @@ type server struct {
 	db           *pgxpool.Pool
 	packs        []sitelib.PackV2
 
-	enIndexTemplate    *ht.Template
-	ruIndexTemplate    *ht.Template
-	enStreamerTemplate *ht.Template
-	ruStreamerTemplate *ht.Template
-	enChicTemplate     *ht.Template
-	ruChicTemplate     *ht.Template
-	enPackTemplate     *ht.Template
-	ruPackTemplate     *ht.Template
-	enCodeTemplate     *ht.Template
-	ruCodeTemplate     *ht.Template
-	bioHeaderRemover   string
+	enIndexTemplate     *ht.Template
+	ruIndexTemplate     *ht.Template
+	enStreamerTemplate  *ht.Template
+	ruStreamerTemplate  *ht.Template
+	enChicTemplate      *ht.Template
+	ruChicTemplate      *ht.Template
+	enPackTemplate      *ht.Template
+	ruPackTemplate      *ht.Template
+	enCodeTemplate      *ht.Template
+	ruCodeTemplate      *ht.Template
+	bioHeaderRemover    string
+	partialFaviconsHTML string
 }
 
 type likeForPack struct {
@@ -211,6 +211,8 @@ func (s *server) tparams(r *http.Request, more map[string]interface{}) map[strin
 	res["img_exts"] = imgExts
 	res["chic_bucket_url"] = s.cfg.BaseBucketURL
 	res["assets_bucket_url"] = s.cfg.AssetsBucketURL
+	res["partial_favicons_html"] = s.partialFaviconsHTML
+
 	return res
 }
 
@@ -440,6 +442,7 @@ func (s *server) iconsCount() int {
 
 func (s *server) fillRawFiles() {
 	content, err := os.ReadFile("pages/common/bio-header-remover.html")
+	checkErr(err)
 	s.bioHeaderRemover = strings.TrimSuffix(string(content), "\n")
 	re := regexp.MustCompile(`\n\s*`)
 	s.bioHeaderRemover = re.ReplaceAllString(s.bioHeaderRemover, " ")
@@ -447,7 +450,10 @@ func (s *server) fillRawFiles() {
 	s.bioHeaderRemover = re.ReplaceAllString(s.bioHeaderRemover, "(")
 	re = regexp.MustCompile(`\s+\)`)
 	s.bioHeaderRemover = re.ReplaceAllString(s.bioHeaderRemover, ")")
+
+	content, err = os.ReadFile("partial/favicons.partial.html")
 	checkErr(err)
+	s.partialFaviconsHTML = string(content)
 }
 
 func (s *server) fillTemplates() {

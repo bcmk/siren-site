@@ -2,6 +2,7 @@ const path = require('path');
 const glob = require('glob');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { PurgeCSSPlugin } = require('purgecss-webpack-plugin');
+const FaviconsPartialPlugin = require("./build/FaviconsPartialPlugin");
 
 const PATHS = {
   pages: path.join(__dirname, 'pages'),
@@ -56,7 +57,22 @@ module.exports = {
           "tbody", "tfoot",
         ]
       }
-    })
+    }),
+    new FaviconsPartialPlugin({
+      logo: './icons/siren-tri.svg',
+      partialFilename: "../partial/favicons.partial.html",
+      favicons: {
+        appName: 'SIREN',
+        appDescription: 'The Telegram bot for webcast alerts',
+        developerName: 'bcmk',
+        background: '#ddd',
+        theme_color: '#000',
+        icons: {
+          coast: false,
+          yandex: false,
+        }
+      }
+    }),
   ],
   resolve: {
     extensions: ['.js', '.scss', '.css']
