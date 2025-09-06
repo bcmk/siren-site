@@ -17,7 +17,7 @@ ARG SIREN_SITE_VERSION=devel
 ENV CGO_ENABLED=0
 ENV GOFLAGS=-trimpath
 ENV LDFLAGS="-s -w"
-RUN ./scripts/build-all "$SIREN_SITE_VERSION"
+RUN ./scripts/build-site "$SIREN_SITE_VERSION"
 
 FROM alpine:3.22
 WORKDIR /app/cmd/site
