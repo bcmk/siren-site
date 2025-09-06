@@ -66,7 +66,8 @@ module.exports = {
         appDescription: 'The Telegram bot for webcast alerts',
         developerName: 'bcmk',
         background: 'transparent',
-        theme_color: '#000',
+        theme_color: '#ffffff',
+        start_url: '/',
         icons: {
           coast: false,
           yandex: false,
