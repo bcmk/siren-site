@@ -7,11 +7,11 @@ class FaviconsPartialPlugin {
       publicPath: "/static/assets",
       outputPath: "assets",
       partialFilename: "favicons.partial.html",
-      faviconsOptions: {
+      favicons: {
         appName: "",
         appDescription: "",
         developerName: "",
-        background: "#ddd",
+        background: "transparent",
         theme_color: "#000",
         icons: { coast: false, yandex: false },
       },
@@ -34,7 +34,7 @@ class FaviconsPartialPlugin {
 
           const res = await favicons(logoAbs, {
             path: this.opts.publicPath,
-            ...this.opts.faviconsOptions,
+            ...this.opts.favicons,
           });
 
           for (const img of res.images) {
