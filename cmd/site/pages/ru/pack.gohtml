@@ -150,6 +150,9 @@
                 {{ if $pack.Icons.onlyfans }}
                     {{ template "simple_input" map "ctx" . "name" "onlyfans" "comment" "Ссылка на Onlyfans" "placeholder" "https://onlyfans.com/username" }}
                 {{ end }}
+                {{ if $pack.Icons.fanberry }}
+                    {{ template "simple_input" map "ctx" . "name" "fanberry" "comment" "Ссылка на Fanberry" "placeholder" "https://www.fanberry.com/share/chaturbate/username?utm_id=...&utm_source=model_share" }}
+                {{ end }}
                 {{ if $pack.Icons.amazon }}
                     {{ template "simple_input" map "ctx" . "name" "amazon" "comment" "Ссылка на список желаний на Amazon" }}
                 {{ end }}
@@ -179,9 +182,6 @@
                 {{ end }}
                 {{ if $pack.Icons.manyvids }}
                     {{ template "simple_input" map "ctx" . "name" "manyvids" "comment" "Ссылка на ManyVids" }}
-                {{ end }}
-                {{ if $pack.Icons.frisk }}
-                    {{ template "simple_input" map "ctx" . "name" "frisk" "comment" "Ссылка на Frisk" }}
                 {{ end }}
                 {{ if $pack.Icons.fansly }}
                     {{ template "simple_input" map "ctx" . "name" "fansly" "comment" "Ссылка на Fansly" }}
@@ -218,6 +218,9 @@
                 {{ end }}
                 {{ if $pack.Icons.discord }}
                     {{ template "simple_input" map "ctx" . "name" "discord" "comment" "Ссылка на Discord" }}
+                {{ end }}
+                {{ if $pack.Icons.frisk }}
+                    {{ template "simple_input" map "ctx" . "name" "frisk" "comment" "Ссылка на Frisk" }}
                 {{ end }}
                 <div class="row mt-4">
                     <div class="col-12 col-lg-9">

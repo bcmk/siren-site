@@ -139,6 +139,7 @@ var packParams = []string{
 	"reddit",
 	"twitch",
 	"discord",
+	"fanberry",
 	"placement",
 }
 
