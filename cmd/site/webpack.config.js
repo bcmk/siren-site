@@ -59,7 +59,7 @@ module.exports = {
       }
     }),
     new FaviconsPartialPlugin({
-      logo: './icons/siren-tri.svg',
+      logo: './icons/siren.svg',
       partialFilename: "../partial/favicons.partial.html",
       favicons: {
         appName: 'SIREN',
