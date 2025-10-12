@@ -33,7 +33,8 @@ type PackV2 struct {
 	HGap                 *int              `json:"hgap,omitempty"`
 	Disable              bool              `json:"disable"`
 	FinalType            string            `json:"final_type"`
-	Timestamp            int64             `json:"timestamp"`
+	CreatedAt            int64             `json:"created_at"`
+	Revision             int64             `json:"revision"`
 	InputType            string            `json:"input_type"`
 	Icons                map[string]IconV2 `json:"icons"`
 
