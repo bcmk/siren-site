@@ -51,7 +51,7 @@
                     <div class="col-12 col-lg-10">
                         <div class="swiper-container dark-stripes">
                             <img style="height: 90px;"
-                                 src="{{ $chic_bucket_url }}/{{ $pack.Name }}/line.{{ index $img_exts "png" }}"
+                                 src="{{ $chic_bucket_url }}/{{ $pack.Name }}/line.{{ index $img_exts "png" }}?rev={{ $pack.Revision }}"
                                  alt=""
                                  draggable="false"
                                  ondragstart="return false;"
