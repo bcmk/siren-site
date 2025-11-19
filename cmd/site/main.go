@@ -93,14 +93,14 @@ var funcMap = ht.FuncMap{
 	"add": func(x, y int) int {
 		return x + y
 	},
+	"mul": func(a, b int) int {
+		return a * b
+	},
 	"sub": func(x, y int) int {
 		return x - y
 	},
 	"div": func(x, y int) int {
 		return x / y
-	},
-	"trimPrefix": func(s, prefix string) string {
-		return strings.TrimPrefix(prefix, s)
 	},
 	"versioned": func(pack *sitelib.PackV2, name string) string {
 		icon := pack.Icons[name]
@@ -108,6 +108,15 @@ var funcMap = ht.FuncMap{
 			return name
 		}
 		return name + ".v" + strconv.Itoa(icon.Version)
+	},
+	"make_slice": func(xs ...any) []any { return xs },
+	"atoi": func(s string) int {
+		if s == "" {
+			return 0
+		}
+		n, err := strconv.Atoi(s)
+		checkErr(err)
+		return n
 	},
 }
 
@@ -141,6 +150,7 @@ var packParams = []string{
 	"discord",
 	"fanberry",
 	"placement",
+	"size",
 }
 
 var chaturbateModelRegex = regexp.MustCompile(`^(?:https?://)?(?:www\.|ar\.|de\.|el\.|en\.|es\.|fr\.|hi\.|it\.|ja\.|ko\.|nl\.|pt\.|ru\.|tr\.|zh\.|m\.)?chaturbate\.com(?:/p|/b)?/([A-Za-z0-9\-_@]+)/?(?:\?.*)?$|^([A-Za-z0-9\-_@]+)$`)
@@ -286,8 +296,11 @@ func (s *server) codeHandler(w http.ResponseWriter, r *http.Request, t *ht.Templ
 	}
 	paramDict := getParamDict(packParams, r)
 	siren := checkSirenParam(paramDict["siren"])
-	paramDict["siren"] = siren
-	if siren == "" {
+	var sizeErr error
+	if paramDict["size"] != "" {
+		_, sizeErr = strconv.Atoi(paramDict["size"])
+	}
+	if siren == "" || sizeErr != nil {
 		target := "/chic/p/" + pack.Name
 		if r.URL.RawQuery != "" {
 			target += "?" + r.URL.RawQuery
@@ -295,7 +308,12 @@ func (s *server) codeHandler(w http.ResponseWriter, r *http.Request, t *ht.Templ
 		http.Redirect(w, r, target, http.StatusTemporaryRedirect)
 		return
 	}
-	code := s.chaturbateCode(pack, paramDict)
+	paramDict["siren"] = siren
+	code, err := s.chaturbateCode(pack, paramDict)
+	if err != nil {
+		notFoundError(w)
+		return
+	}
 	checkErr(t.Execute(w, s.tparams(r, map[string]interface{}{"pack": pack, "params": paramDict, "code": code})))
 }
 
@@ -314,7 +332,11 @@ func (s *server) testHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	paramDict := getParamDict(packParams, r)
-	code := s.chaturbateCode(pack, paramDict)
+	code, err := s.chaturbateCode(pack, paramDict)
+	if err != nil {
+		notFoundError(w)
+		return
+	}
 	_, _ = w.Write([]byte(code))
 }
 
@@ -377,11 +399,20 @@ type iconSize struct {
 	Height float64
 }
 
-func (s *server) chaturbateCode(pack *sitelib.PackV2, params map[string]string) string {
+func (s *server) chaturbateCode(pack *sitelib.PackV2, params map[string]string) (string, error) {
 	t := parseHTMLTemplate("common/icons-code-generator.gohtml")
 	var b bytes.Buffer
 	w := bufio.NewWriter(&b)
-	width := 5.4 * float64(*pack.ChaturbateIconsScale) / float64(100)
+	unscaledSize := 5.4
+	if params["size"] != "" {
+		pxSize, err := strconv.Atoi(params["size"])
+		if err != nil {
+			return "", err
+		}
+		chaturbateREMToPXCoeff := 10.
+		unscaledSize = float64(pxSize) / chaturbateREMToPXCoeff
+	}
+	width := unscaledSize * float64(*pack.ChaturbateIconsScale) / float64(100)
 	hgap := 25
 	if pack.HGap != nil {
 		hgap = *pack.HGap
@@ -408,7 +439,7 @@ func (s *server) chaturbateCode(pack *sitelib.PackV2, params map[string]string) 
 	if err != nil {
 		panic(err)
 	}
-	return str
+	return str, nil
 }
 
 func cacheControlHandler(h http.Handler, mins int) http.Handler {

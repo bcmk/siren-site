@@ -6,6 +6,21 @@
 {{ $likes := .likes }}
 {{ $img_exts := .img_exts }}
 {{ $chic_bucket_url := .chic_bucket_url }}
+{{ $sizes := make_slice 42 48 54 60 66 72 78 84 90 }}
+
+{{ define "size_selection_input" }}
+    <input type="radio"
+           class="outlined-selection"
+           id="size-{{ .h }}"
+           name="size"
+           value="{{ .h }}"
+           {{ if or (and (not .selectedSize) (eq .h 54)) (eq .h .selectedSize) -}} checked {{- end }}>
+    <label for="size-{{ .h }}">
+        <img src="{{ .ctx.chic_bucket_url }}/{{ .ctx.pack.Name }}/{{ versioned .ctx.pack "siren" }}.{{ index .ctx.img_exts .ctx.pack.FinalType }}?rev={{ .ctx.pack.Revision }}"
+             alt=""
+             style="height: {{ mul_div .h .ctx.pack.Scale 100 }}px;">
+    </label>
+{{ end }}
 
 <html lang="ru" xmlns:og="http://ogp.me/ns#">
 <head>
@@ -39,8 +54,7 @@
 <div class="container" style="margin-bottom: 75px;">
     <main>
         <header class="mt-4">
-            <h1>{{ $pack.HumanName }}</title>
-            <p class="h-secondary">Пакет иконок для Chaturbate</p>
+            <h1>{{ $pack.HumanName }}<p class="h-secondary">Пакет иконок для Chaturbate</p></h1>
         </header>
         <p class="pt-2">
             Эти иконки бесплатны.
@@ -53,17 +67,44 @@
         </div>
         <form novalidate action="/chic/code/{{ .pack.Name }}" class="needs-validation">
             <h3 class="mt-4">Выберите расположение</h3>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="placement" id="title" value="title" checked>
-                <label class="form-check-label" for="title">
-                    Вместо <em>"Описание и бесплатная веб-камера <strong>МОДЕЛЬ</strong>"</em>
+            <div class="form-check d-flex align-items-center mt-2">
+                <input class="form-check-input" type="radio" name="placement" id="input-placement-header" value="header" checked>
+                <label class="form-check-label d-flex flex-column ms-3" for="input-placement-header">
+                    <span><b>Заголовок</b></span>
+                    <small>Вместо <em>"Описание и бесплатная веб-камера <strong>МОДЕЛЬ</strong>"</em></small>
                 </label>
             </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="placement" id="line" value="line">
-                <label class="form-check-label" for="line">
-                    Просто ещё одна строка в разделе
+            <div class="form-check d-flex align-items-center mt-2">
+                <input class="form-check-input" type="radio" name="placement" id="input-placement-inline" value="inline">
+                <label class="form-check-label d-flex flex-column ms-3" for="input-placement-inline">
+                    <span><b>Строка</b></span>
+                    <small>Просто ещё одна строка в разделе</small>
                 </label>
+            </div>
+
+            <input id="input-size-selection-header" hidden name="size" value="54">
+            <div id="section-size-selection" class="mt-4 opacity-50 pe-none">
+                <h3>Выберете размер иконок (только в режиме строки)</h3>
+                <div class="row mt-4">
+                    <div class="col-xl-10 col-12">
+                        {{ $ctx := . }}
+                        {{ $rows := make_slice 0 1 2 }}
+                        {{ $cols := make_slice 0 1 2 }}
+
+                        <table class="size-selection">
+                            {{ range $row := $rows }}
+                                <tr>
+                                    {{ range $col := $cols }}
+                                        {{ $idx := add (mul $row 3) $col }}
+                                        <td>
+                                            {{ template "size_selection_input" map "h" (index $sizes $idx) "selectedSize" (atoi $params.size) "ctx" $ctx }}
+                                        </td>
+                                    {{ end }}
+                                </tr>
+                            {{ end }}
+                        </table>
+                    </div>
+                </div>
             </div>
 
             <h3 class="mt-4">Заполните свои социальные сети</h3>
@@ -120,7 +161,7 @@
                             </div>
                             <div class="w-100 d-flex align-self-center justify-content-center h-100 ms-3 flex-column">
                                 <div class="w-100 cont-label">
-                                    <label for="{{ .name }}" class="form-label input-tip">Добавить иконку для фан-клуба</label>
+                                    <label for="fanclub" class="form-label input-tip">Добавить иконку для фан-клуба</label>
                                 </div>
                                 <div class="w-100 d-flex">
                                     <div class="align-self-center flex-fill">
@@ -303,6 +344,24 @@
                 form.classList.add('was-validated')
             }, false)
         })
+
+        const inputPlacementHeader = document.getElementById('input-placement-header');
+        const inputPlacementInline = document.getElementById('input-placement-inline');
+        const inputSizeSelectionHeader = document.getElementById('input-size-selection-header');
+        const section = document.getElementById('section-size-selection');
+        const sizeInputs = section.querySelectorAll('input[name="size"]');
+        function updateSizeSection() {
+            const inlineSelected = inputPlacementInline.checked;
+            section.classList.toggle('opacity-50', !inlineSelected);
+            section.classList.toggle('pe-none', !inlineSelected);
+            inputSizeSelectionHeader.disabled = inlineSelected
+            sizeInputs.forEach(function (input) {
+                input.disabled = !inlineSelected;
+            });
+        }
+        inputPlacementHeader.addEventListener('change', updateSizeSection);
+        inputPlacementInline.addEventListener('change', updateSizeSection);
+        updateSizeSection();
     })()
 </script>
 </body>

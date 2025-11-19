@@ -1,6 +1,6 @@
-{{- if eq .params.placement "line" -}}
+{{- if eq .params.placement "inline" -}}
 {{- raw_html "<!-- ICONS BEGIN -->" -}}
-<b style="display: flex; flex-direction: row; column-gap: {{ .hgap }}px; height: 62px; align-items: center;">
+<b style="display: flex; flex-direction: row; column-gap: {{ .hgap }}px; align-items: center; margin-top: 1rem; margin-bottom: 1rem;">
 {{- else -}}
 {{- raw_html .bio_header_remover -}}
 {{- raw_html "<!-- ICONS BEGIN -->" -}}
@@ -57,7 +57,7 @@
         {{- template "simple_icon" enhance $base_map (map "name" "siren" "value" (printf "https://siren.chat/cb/%s" .params.siren)) -}}
     {{- end -}}
 </b>
-{{- if eq .params.placement "title" -}}
+{{- if eq .params.placement "header" -}}
 <p style="height: 62px; margin: 0;"/>
 {{- end -}}
 {{- raw_html "<!-- ICONS END -->" -}}
