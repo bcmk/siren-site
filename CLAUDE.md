@@ -81,3 +81,7 @@ Each pack contains metadata (name, scale, icons mapping) and can be enabled/disa
 
 PostgreSQL with a likes/preferences table tracking user interactions by IP address.
 Migrations are versioned in `migrations.go`.
+
+## Git Conventions
+
+Use one-line commit messages.
