@@ -518,6 +518,11 @@ func main() {
 	linf("starting...")
 	srv := &server{cfg: sitelib.ReadConfig()}
 	srv.packs = sitelib.ParsePacksV2(srv.cfg)
+	for _, pack := range srv.packs {
+		if pack.ChaturbateIconsScale == nil {
+			panic(fmt.Sprintf("pack %s has no chaturbate_icons_scale", pack.Name))
+		}
+	}
 	if len(srv.packs) > 2 {
 		srv.packs = append([]sitelib.PackV2{srv.packs[len(srv.packs)-1]}, srv.packs[:len(srv.packs)-1]...)
 	}
