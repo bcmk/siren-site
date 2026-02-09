@@ -84,7 +84,7 @@
 
             <input id="input-size-selection-header" hidden name="size" value="54">
             <div id="section-size-selection" class="mt-4 opacity-50 pe-none">
-                <h3>Выберете размер иконок (только в режиме строки)</h3>
+                <h3>Выберите размер иконок (только в режиме строки)</h3>
                 <div class="row mt-4">
                     <div class="col-xl-10 col-12">
                         {{ $ctx := . }}
@@ -189,7 +189,7 @@
                     {{ template "simple_input" map "ctx" . "name" "twitter" "comment" "Ссылка на X" "placeholder" "https://x.com/username" }}
                 {{ end }}
                 {{ if $pack.Icons.onlyfans }}
-                    {{ template "simple_input" map "ctx" . "name" "onlyfans" "comment" "Ссылка на Onlyfans" "placeholder" "https://onlyfans.com/username" }}
+                    {{ template "simple_input" map "ctx" . "name" "onlyfans" "comment" "Ссылка на OnlyFans" "placeholder" "https://onlyfans.com/username" }}
                 {{ end }}
                 {{ if $pack.Icons.fanberry }}
                     {{ template "simple_input" map "ctx" . "name" "fanberry" "comment" "Ссылка на Fanberry" "placeholder" "https://www.fanberry.com/share/chaturbate/username?utm_id=...&utm_source=model_share" }}
