@@ -55,6 +55,7 @@ type Config struct {
 	BaseBucketURL    string `mapstructure:"base_bucket_url"`
 	AssetsBucketURL  string `mapstructure:"assets_bucket_url"`
 	Debug            bool   `mapstructure:"debug"`
+	Lang             string // set from --lang flag, not from config file
 }
 
 type configFile struct {
@@ -152,6 +153,7 @@ func stringToSliceHookFunc(sep string) mapstructure.DecodeHookFunc {
 }
 
 var cfgPath = pflag.StringP("config", "c", "", "path to a config file (overrides default search)")
+var langFlag = pflag.String("lang", "", "force language (e.g. 'ru')")
 
 // ReadConfig reads config file and parses it
 func ReadConfig() *Config {
@@ -196,6 +198,8 @@ func ReadConfig() *Config {
 			mapstructure.TextUnmarshallerHookFunc(),
 		)
 	}))
+
+	cfg.Lang = *langFlag
 
 	return cfg
 }

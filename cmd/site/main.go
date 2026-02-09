@@ -560,24 +560,23 @@ func main() {
 	fmt.Printf("%d packs loaded, %d icons\n", len(srv.packs), srv.iconsCount())
 	ruDomain := "ru." + srv.cfg.BaseDomain
 	r := mux.NewRouter().StrictSlash(true)
-	r.Handle("/", srv.measure(handlers.CompressHandler(http.HandlerFunc(srv.ruIndexHandler)))).Host(ruDomain)
-	r.Handle("/", srv.measure(handlers.CompressHandler(http.HandlerFunc(srv.enIndexHandler))))
 
-	r.Handle("/streamer", srv.measure(handlers.CompressHandler(http.HandlerFunc(srv.ruStreamerHandler)))).Host(ruDomain)
-	r.Handle("/streamer", srv.measure(handlers.CompressHandler(http.HandlerFunc(srv.enStreamerHandler))))
+	bilingualRoute := func(path string, ruHandler, enHandler http.HandlerFunc) {
+		if srv.cfg.Lang == "ru" {
+			r.Handle(path, srv.measure(handlers.CompressHandler(ruHandler)))
+		} else {
+			r.Handle(path, srv.measure(handlers.CompressHandler(ruHandler))).Host(ruDomain)
+			r.Handle(path, srv.measure(handlers.CompressHandler(enHandler)))
+		}
+	}
 
-	r.Handle("/streamer/notifications", srv.measure(handlers.CompressHandler(http.HandlerFunc(srv.ruStreamerNotificationsHandler)))).Host(ruDomain)
-	r.Handle("/streamer/notifications", srv.measure(handlers.CompressHandler(http.HandlerFunc(srv.enStreamerNotificationsHandler))))
-
-	r.Handle("/streamer/channel", srv.measure(handlers.CompressHandler(http.HandlerFunc(srv.ruStreamerChannelHandler)))).Host(ruDomain)
-	r.Handle("/streamer/channel", srv.measure(handlers.CompressHandler(http.HandlerFunc(srv.enStreamerChannelHandler))))
-
-	r.Handle("/chic", srv.measure(handlers.CompressHandler(http.HandlerFunc(srv.ruChicHandler)))).Host(ruDomain)
-	r.Handle("/chic", srv.measure(handlers.CompressHandler(http.HandlerFunc(srv.enChicHandler))))
-	r.Handle("/chic/p/{pack}", srv.measure(handlers.CompressHandler(http.HandlerFunc(srv.ruPackHandler)))).Host(ruDomain)
-	r.Handle("/chic/p/{pack}", srv.measure(handlers.CompressHandler(http.HandlerFunc(srv.enPackHandler))))
-	r.Handle("/chic/code/{pack}", srv.measure(handlers.CompressHandler(http.HandlerFunc(srv.ruCodeHandler)))).Host(ruDomain)
-	r.Handle("/chic/code/{pack}", srv.measure(handlers.CompressHandler(http.HandlerFunc(srv.enCodeHandler))))
+	bilingualRoute("/", srv.ruIndexHandler, srv.enIndexHandler)
+	bilingualRoute("/streamer", srv.ruStreamerHandler, srv.enStreamerHandler)
+	bilingualRoute("/streamer/notifications", srv.ruStreamerNotificationsHandler, srv.enStreamerNotificationsHandler)
+	bilingualRoute("/streamer/channel", srv.ruStreamerChannelHandler, srv.enStreamerChannelHandler)
+	bilingualRoute("/chic", srv.ruChicHandler, srv.enChicHandler)
+	bilingualRoute("/chic/p/{pack}", srv.ruPackHandler, srv.enPackHandler)
+	bilingualRoute("/chic/code/{pack}", srv.ruCodeHandler, srv.enCodeHandler)
 	r.Handle("/chic/test/{pack}", srv.measure(handlers.CompressHandler(http.HandlerFunc(srv.testHandler))))
 	r.Handle("/chic/like/{pack}", srv.measure(http.HandlerFunc(srv.likeHandler)))
 
