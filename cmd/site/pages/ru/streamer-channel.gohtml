@@ -81,6 +81,10 @@
                 Отправьте эту команду в <span class="type-name-prepositional"></span>, чтобы начать получать оповещения.
             </p>
             <p class="mono">/add@<span class="bot-username-bare"></span> <strong><em class="add-placeholder"></em></strong></p>
+            <div id="bongacams-warning" class="p-3 mb-3 bg-warning" style="display:none;">
+                Пожалуйста, не используйте "отображаемое имя" или "настоящее имя".
+                Используйте имя пользователя, которое вы вводите при логине!
+            </div>
             <p>Вы можете удалить команду после установки бота.</p>
 
             <h4>Шаг 3 (необязательный): Отключить офлайн-оповещения</h4>
@@ -185,6 +189,7 @@
 
         document.getElementById("channel-steps").style.display = selectedType === "channel" ? "" : "none";
         document.getElementById("group-steps").style.display = selectedType === "group" ? "" : "none";
+        document.getElementById("bongacams-warning").style.display = selectedPlatform === "BongaCams" ? "" : "none";
     }
 })();
 </script>

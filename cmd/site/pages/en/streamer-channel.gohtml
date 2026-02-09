@@ -81,6 +81,9 @@
                 Send this command in your <span class="type-name"></span> to start receiving notifications.
             </p>
             <p class="mono">/add@<span class="bot-username-bare"></span> <strong><em class="add-placeholder"></em></strong></p>
+            <div id="bongacams-warning" class="p-3 mb-3 bg-warning" style="display:none;">
+                Please don't use your display name or real name. Use the username you log in with!
+            </div>
             <p>You can remove this command after the bot is set up.</p>
 
             <h4>Step 3 (optional): Disable offline notifications</h4>
@@ -179,6 +182,7 @@
 
         document.getElementById("channel-steps").style.display = selectedType === "channel" ? "" : "none";
         document.getElementById("group-steps").style.display = selectedType === "group" ? "" : "none";
+        document.getElementById("bongacams-warning").style.display = selectedPlatform === "BongaCams" ? "" : "none";
     }
 })();
 </script>
