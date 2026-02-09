@@ -23,13 +23,13 @@
         </p>
 
         <h4>I have a...</h4>
-        <div class="mb-3 platform-selector" id="type-selector">
+        <div class="mb-3 platform-selector col-md-8" id="type-selector">
             <button class="btn btn-outline-dark platform-btn me-2 mb-2 active" data-type="channel">Channel</button>
             <button class="btn btn-outline-dark platform-btn me-2 mb-2" data-type="group">Group</button>
         </div>
 
-        <h4>My streaming platform</h4>
-        <div class="mb-3 platform-selector" id="platform-selector">
+        <h4>My streaming platform is...</h4>
+        <div class="mb-3 platform-selector col-md-8" id="platform-selector">
             <button class="btn btn-outline-dark platform-btn me-2 mb-2 active" data-platform="Twitch">Twitch</button>
             <button class="btn btn-outline-dark platform-btn me-2 mb-2" data-platform="Chaturbate">Chaturbate</button>
             <button class="btn btn-outline-dark platform-btn me-2 mb-2" data-platform="Stripchat">Stripchat</button>
@@ -40,7 +40,7 @@
             <button class="btn btn-outline-dark platform-btn me-2 mb-2" data-platform="Streamate">Streamate</button>
         </div>
 
-        <h4>My username</h4>
+        <h4>My username is...</h4>
         <div class="mb-3 col-sm-4">
             <input type="text" class="form-control" id="username-input" placeholder="Enter your username">
         </div>
@@ -59,27 +59,16 @@
 
             <div id="channel-steps">
                 <ol>
-                    <li>Open your channel in Telegram</li>
-                    <li>Tap the channel name at the top to open channel info</li>
-                    <li>Tap <strong>Administrators</strong></li>
-                    <li>Tap <strong>Add Admin</strong></li>
-                    <li>Search for <span class="mono bot-username"></span></li>
-                    <li>Select the bot from the search results</li>
-                    <li>Enable these permissions: <strong>Post Messages</strong></li>
-                    <li>Tap the checkmark to confirm</li>
+                    <li>Tap the channel name at the top <i class="fas fa-angle-right mx-1"></i> <strong>Administrators</strong> <i class="fas fa-angle-right mx-1"></i> <strong>Add Admin</strong></li>
+                    <li>Search for <span class="mono bot-username"></span> and add it</li>
+                    <li><strong>Important:</strong> enable the <strong>Post Messages</strong> permission — without it the bot can't respond to you</li>
                 </ol>
-                <div class="p-3 mb-3 bg-warning">
-                    <strong>Important:</strong> Without post message rights the bot cannot even reply to commands.
-                </div>
             </div>
 
             <div id="group-steps">
                 <ol>
-                    <li>Open your group in Telegram</li>
-                    <li>Tap the group name at the top to open group info</li>
-                    <li>Tap <strong>Add Members</strong> (or <strong>Add</strong>)</li>
-                    <li>Search for <span class="mono bot-username"></span></li>
-                    <li>Select the bot from the search results to add it</li>
+                    <li>Tap the group name at the top <i class="fas fa-angle-right mx-1"></i> <strong>Add <span class="opacity-75">[Members]</span></strong></li>
+                    <li>Search for <span class="mono bot-username"></span> and add it</li>
                 </ol>
             </div>
 

@@ -86,6 +86,10 @@ This project uses **FontAwesome 5.15.4**. Use `fas`/`fab`/`far` class prefixes, 
 PostgreSQL with a likes/preferences table tracking user interactions by IP address.
 Migrations are versioned in `migrations.go`.
 
+## Workflow
+
+Run `yarn build` (from `cmd/site/`) after frontend changes without asking.
+
 ## Git Conventions
 
 Use one-line commit messages. The first word must be a verb (e.g. "add", "fix", "update", "remove").

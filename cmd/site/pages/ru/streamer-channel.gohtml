@@ -23,13 +23,13 @@
         </p>
 
         <h4>У меня...</h4>
-        <div class="mb-3 platform-selector" id="type-selector">
+        <div class="mb-3 platform-selector col-md-8" id="type-selector">
             <button class="btn btn-outline-dark platform-btn me-2 mb-2 active" data-type="channel">Канал</button>
             <button class="btn btn-outline-dark platform-btn me-2 mb-2" data-type="group">Группа</button>
         </div>
 
-        <h4>Моя стриминговая платформа</h4>
-        <div class="mb-3 platform-selector" id="platform-selector">
+        <h4>Моя стриминговая платформа...</h4>
+        <div class="mb-3 platform-selector col-md-8" id="platform-selector">
             <button class="btn btn-outline-dark platform-btn me-2 mb-2 active" data-platform="Twitch">Twitch</button>
             <button class="btn btn-outline-dark platform-btn me-2 mb-2" data-platform="Chaturbate">Chaturbate</button>
             <button class="btn btn-outline-dark platform-btn me-2 mb-2" data-platform="Stripchat">Stripchat</button>
@@ -40,7 +40,7 @@
             <button class="btn btn-outline-dark platform-btn me-2 mb-2" data-platform="Streamate">Streamate</button>
         </div>
 
-        <h4>Мой никнейм</h4>
+        <h4>Мой никнейм...</h4>
         <div class="mb-3 col-sm-4">
             <input type="text" class="form-control" id="username-input" placeholder="Введите ваш никнейм">
         </div>
@@ -60,27 +60,16 @@
 
             <div id="channel-steps">
                 <ol>
-                    <li>Откройте ваш канал в Telegram</li>
-                    <li>Нажмите на название канала вверху, чтобы открыть информацию о канале</li>
-                    <li>Нажмите <strong>Администраторы</strong></li>
-                    <li>Нажмите <strong>Добавить администратора</strong></li>
-                    <li>Найдите <span class="mono bot-username"></span></li>
-                    <li>Выберите бота из результатов поиска</li>
-                    <li>Включите разрешение: <strong>Публикация сообщений</strong></li>
-                    <li>Нажмите галочку для подтверждения</li>
+                    <li>Нажмите на название канала вверху <i class="fas fa-angle-right mx-1"></i> <strong>Администраторы</strong> <i class="fas fa-angle-right mx-1"></i> <strong>Добавить администратора</strong></li>
+                    <li>Найдите <span class="mono bot-username"></span> и добавьте его</li>
+                    <li><strong>Важно:</strong> включите разрешение <strong>Публикация сообщений</strong> — без этого бот не сможет вам отвечать</li>
                 </ol>
-                <div class="p-3 mb-3 bg-warning">
-                    <strong>Важно:</strong> Без права на публикацию сообщений бот не сможет даже ответить на команды.
-                </div>
             </div>
 
             <div id="group-steps">
                 <ol>
-                    <li>Откройте вашу группу в Telegram</li>
-                    <li>Нажмите на название группы вверху, чтобы открыть информацию о группе</li>
-                    <li>Нажмите <strong>Добавить участников</strong> (или <strong>Добавить</strong>)</li>
-                    <li>Найдите <span class="mono bot-username"></span></li>
-                    <li>Выберите бота из результатов поиска, чтобы добавить его</li>
+                    <li>Нажмите на название группы вверху <i class="fas fa-angle-right mx-1"></i> <strong>Добавить <span class="opacity-75">[участников]</span></strong></li>
+                    <li>Найдите <span class="mono bot-username"></span> и добавьте его</li>
                 </ol>
             </div>
 
