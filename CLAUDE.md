@@ -22,7 +22,7 @@ yarn watch          # Development mode with file watching
 
 ### Backend
 ```bash
-go build ./cmd/site                           # Build Go binary
+go build -o cmd/site/site ./cmd/site              # Build Go binary into cmd/site/
 scripts/build-site <VERSION>                  # Build with version injection
 scripts/build-and-push <VERSION>              # Multi-platform Docker build and push
 ```
