@@ -39,8 +39,12 @@ type server struct {
 
 	enIndexTemplate     *ht.Template
 	ruIndexTemplate     *ht.Template
-	enStreamerTemplate  *ht.Template
-	ruStreamerTemplate  *ht.Template
+	enStreamerTemplate              *ht.Template
+	ruStreamerTemplate              *ht.Template
+	enStreamerNotificationsTemplate *ht.Template
+	ruStreamerNotificationsTemplate *ht.Template
+	enStreamerChannelTemplate       *ht.Template
+	ruStreamerChannelTemplate       *ht.Template
 	enChicTemplate      *ht.Template
 	ruChicTemplate      *ht.Template
 	enPackTemplate      *ht.Template
@@ -241,6 +245,22 @@ func (s *server) enStreamerHandler(w http.ResponseWriter, r *http.Request) {
 
 func (s *server) ruStreamerHandler(w http.ResponseWriter, r *http.Request) {
 	checkErr(s.ruStreamerTemplate.Execute(w, s.tparams(r, nil)))
+}
+
+func (s *server) enStreamerNotificationsHandler(w http.ResponseWriter, r *http.Request) {
+	checkErr(s.enStreamerNotificationsTemplate.Execute(w, s.tparams(r, nil)))
+}
+
+func (s *server) ruStreamerNotificationsHandler(w http.ResponseWriter, r *http.Request) {
+	checkErr(s.ruStreamerNotificationsTemplate.Execute(w, s.tparams(r, nil)))
+}
+
+func (s *server) enStreamerChannelHandler(w http.ResponseWriter, r *http.Request) {
+	checkErr(s.enStreamerChannelTemplate.Execute(w, s.tparams(r, nil)))
+}
+
+func (s *server) ruStreamerChannelHandler(w http.ResponseWriter, r *http.Request) {
+	checkErr(s.ruStreamerChannelTemplate.Execute(w, s.tparams(r, nil)))
 }
 
 func (s *server) enChicHandler(w http.ResponseWriter, r *http.Request) {
@@ -494,6 +514,10 @@ func (s *server) fillTemplates() {
 	s.ruIndexTemplate = parseHTMLTemplate(append([]string{"ru/index.gohtml", "ru/trans.gohtml"}, common...)...)
 	s.enStreamerTemplate = parseHTMLTemplate(append([]string{"en/streamer.gohtml", "en/trans.gohtml"}, common...)...)
 	s.ruStreamerTemplate = parseHTMLTemplate(append([]string{"ru/streamer.gohtml", "ru/trans.gohtml"}, common...)...)
+	s.enStreamerNotificationsTemplate = parseHTMLTemplate(append([]string{"en/streamer-notifications.gohtml", "en/trans.gohtml"}, common...)...)
+	s.ruStreamerNotificationsTemplate = parseHTMLTemplate(append([]string{"ru/streamer-notifications.gohtml", "ru/trans.gohtml"}, common...)...)
+	s.enStreamerChannelTemplate = parseHTMLTemplate(append([]string{"en/streamer-channel.gohtml", "en/trans.gohtml"}, common...)...)
+	s.ruStreamerChannelTemplate = parseHTMLTemplate(append([]string{"ru/streamer-channel.gohtml", "ru/trans.gohtml"}, common...)...)
 
 	chic := []string{"common/head.gohtml", "common/header.gohtml", "common/footer.gohtml", "common/cpix.gohtml"}
 	s.enChicTemplate = parseHTMLTemplate(append([]string{"common/chic.gohtml", "en/chic.gohtml", "en/trans.gohtml"}, chic...)...)
@@ -541,6 +565,12 @@ func main() {
 
 	r.Handle("/streamer", srv.measure(handlers.CompressHandler(http.HandlerFunc(srv.ruStreamerHandler)))).Host(ruDomain)
 	r.Handle("/streamer", srv.measure(handlers.CompressHandler(http.HandlerFunc(srv.enStreamerHandler))))
+
+	r.Handle("/streamer/notifications", srv.measure(handlers.CompressHandler(http.HandlerFunc(srv.ruStreamerNotificationsHandler)))).Host(ruDomain)
+	r.Handle("/streamer/notifications", srv.measure(handlers.CompressHandler(http.HandlerFunc(srv.enStreamerNotificationsHandler))))
+
+	r.Handle("/streamer/channel", srv.measure(handlers.CompressHandler(http.HandlerFunc(srv.ruStreamerChannelHandler)))).Host(ruDomain)
+	r.Handle("/streamer/channel", srv.measure(handlers.CompressHandler(http.HandlerFunc(srv.enStreamerChannelHandler))))
 
 	r.Handle("/chic", srv.measure(handlers.CompressHandler(http.HandlerFunc(srv.ruChicHandler)))).Host(ruDomain)
 	r.Handle("/chic", srv.measure(handlers.CompressHandler(http.HandlerFunc(srv.enChicHandler))))

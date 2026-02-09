@@ -62,6 +62,10 @@ Routes are language-aware via subdomain detection (en.domain.com vs ru.domain.co
 Packs are loaded dynamically from AWS S3 as JSON config files (`config_v2.json`).
 Each pack contains metadata (name, scale, icons mapping) and can be enabled/disabled without redeployment.
 
+### FontAwesome
+
+This project uses **FontAwesome 5.15.4**. Use `fas`/`fab`/`far` class prefixes, NOT the FontAwesome 6 `fa-solid`/`fa-brands`/`fa-regular` syntax.
+
 ### Frontend Structure
 
 - `cmd/site/frontend/index.js` - Webpack entry point

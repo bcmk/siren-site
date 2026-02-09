@@ -131,3 +131,28 @@ a.share-button {
 .gold {
     color: #ddaa00;
 }
+
+.service-card {
+    background-color: white;
+    border-radius: 15px;
+    border: 2px solid #ddd;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s, box-shadow 0.2s;
+    &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    }
+}
+
+.service-card-title {
+    color: #4d4d4d;
+}
+
+.service-card-icon {
+    font-size: 3rem;
+    color: #4d4d4d;
+    margin-bottom: 1rem;
+    margin-top: 0.5rem;
+}
