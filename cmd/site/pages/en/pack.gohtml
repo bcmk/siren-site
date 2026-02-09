@@ -28,11 +28,11 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@siren_tlg">
     <meta name="twitter:creator" content="@siren_tlg">
-    <meta name="twitter:title" content="Chaturbate icons constructor">
-    <meta name="twitter:description" content="{{ $pack.HumanName }} — Chaturbate icon pack">
+    <meta name="twitter:title" content="Chaturbate Icons Constructor">
+    <meta name="twitter:description" content="{{ $pack.HumanName }} — Chaturbate Icon Pack">
     <meta name="twitter:image" content="{{ .base_url }}/chic/i/{{ $pack.Name }}/banner.jpg">
     <meta name="image" property="og:image" content="{{ .base_url }}/chic/i/{{ $pack.Name }}/banner.jpg" />
-    <title>{{ $pack.HumanName }} — Chaturbate icon pack</title>
+    <title>{{ $pack.HumanName }} — Chaturbate Icon Pack</title>
     <script>
         function like_changed(what, val) {
             fetch(`/chic/like/${what}`, {method: "POST", body: JSON.stringify({pack: what, like: val})});
@@ -54,7 +54,7 @@
 <div class="container" style="margin-bottom: 75px;">
     <main>
         <header class="mt-4">
-            <h1>{{ $pack.HumanName }}<p class="h-secondary">Chaturbate icon pack</p></h1>
+            <h1>{{ $pack.HumanName }}<p class="h-secondary">Chaturbate Icon Pack</p></h1>
         </header>
         <p class="pt-2">
             These icons are free.
@@ -66,7 +66,7 @@
             <a class="btn btn-dark px-3" href="/chic">see all the packs</a>
         </div>
         <form novalidate action="/chic/code/{{ .pack.Name }}" class="needs-validation">
-            <h3 class="mt-4">Choose a placement</h3>
+            <h3 class="mt-4">Choose a Placement</h3>
             <div class="form-check d-flex align-items-center mt-2">
                 <input class="form-check-input" type="radio" name="placement" id="input-placement-header" value="header" checked>
                 <label class="form-check-label d-flex flex-column ms-3" for="input-placement-header">
@@ -84,7 +84,7 @@
 
             <input id="input-size-selection-header" hidden name="size" value="54">
             <div id="section-size-selection" class="mt-4 opacity-50 pe-none">
-                <h3>Select the icon size (inline mode only)</h3>
+                <h3>Select the Icon Size (Inline Mode Only)</h3>
                 <div class="row mt-4">
                     <div class="col-xl-10 col-12">
                         {{ $ctx := . }}
@@ -108,7 +108,7 @@
             </div>
 
 
-            <h3 class="mt-4">Fill in your social media</h3>
+            <h3 class="mt-4">Fill in Your Social Media</h3>
             <div class="mx-auto mt-3">
                 {{ define "simple_input" }}
                     <div class="row mt-2"/>
@@ -292,7 +292,7 @@
                 </div>
                 <div class="row mt-5">
                     <div class="col-12 col-lg-9">
-                        <button id="submit" class="btn btn-primary w-100">get the code for your bio</button>
+                        <button id="submit" class="btn btn-primary w-100">Get the Code for Your Bio</button>
                         <div id="validation-alert" class="alert alert-danger mt-3 collapse" role="alert">Please fix errors in the form and try again</div>
                     </div>
                 </div>
