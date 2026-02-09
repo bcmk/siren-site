@@ -40,6 +40,15 @@
             <button class="btn btn-outline-dark platform-btn me-2 mb-2" data-platform="Streamate">Streamate</button>
         </div>
 
+        <h4>Ваш никнейм</h4>
+        <div class="mb-3 col-sm-4">
+            <input type="text" class="form-control" id="username-input" placeholder="Введите ваш никнейм">
+        </div>
+        <div id="bongacams-warning" class="p-3 mb-3 bg-warning" style="display:none;">
+            Пожалуйста, не используйте "отображаемое имя" или "настоящее имя".
+            Используйте имя пользователя, которое вы вводите при логине!
+        </div>
+
         <div id="instructions" style="display:none;">
 
             <p>
@@ -61,8 +70,7 @@
                     <li>Нажмите галочку для подтверждения</li>
                 </ol>
                 <div class="p-3 mb-3 bg-warning">
-                    <strong>Важно:</strong> Бот должен быть добавлен как администратор с разрешением на публикацию сообщений.
-                    Без прав администратора бот не сможет отправлять оповещения в ваш канал.
+                    <strong>Важно:</strong> Без права на публикацию сообщений бот не сможет даже ответить на команды.
                 </div>
             </div>
 
@@ -80,10 +88,9 @@
             <p>
                 Отправьте эту команду в <span class="type-name-prepositional"></span>, чтобы начать получать оповещения.
             </p>
-            <p class="mono">/add@<span class="bot-username-bare"></span> <strong><em class="add-placeholder"></em></strong></p>
-            <div id="bongacams-warning" class="p-3 mb-3 bg-warning" style="display:none;">
-                Пожалуйста, не используйте "отображаемое имя" или "настоящее имя".
-                Используйте имя пользователя, которое вы вводите при логине!
+            <div class="d-flex align-items-center bg-white rounded border p-2 mb-2">
+                <code class="mono me-auto">/add@<span class="bot-username-bare"></span> <strong><em class="add-placeholder"></em></strong></code>
+                <button class="btn btn-outline-secondary btn-sm ms-2 copy-btn" title="Скопировать"><i class="fas fa-copy"></i></button>
             </div>
             <p>Вы можете удалить команду после установки бота.</p>
 
@@ -91,7 +98,10 @@
             <p>
                 По умолчанию бот также уведомляет, когда вы уходите офлайн. Чтобы отключить офлайн-оповещения, отправьте эту команду.
             </p>
-            <p class="mono">/disable_offline_notifications@<span class="bot-username-bare"></span></p>
+            <div class="d-flex align-items-center bg-white rounded border p-2 mb-2">
+                <code class="mono me-auto">/disable_offline_notifications@<span class="bot-username-bare"></span></code>
+                <button class="btn btn-outline-secondary btn-sm ms-2 copy-btn" title="Скопировать"><i class="fas fa-copy"></i></button>
+            </div>
             <p>
                 Вы можете удалить команду после установки бота.
                 Чтобы вновь включить офлайн-оповещения, просто замените <span class="mono">disable</span> на <span class="mono">enable</span>.
@@ -101,7 +111,10 @@
             <p>
                 По умолчанию бот отправляет скриншот с каждым оповещением. Чтобы отключить скриншоты, отправьте эту команду.
             </p>
-            <p class="mono">/disable_images@<span class="bot-username-bare"></span></p>
+            <div class="d-flex align-items-center bg-white rounded border p-2 mb-2">
+                <code class="mono me-auto">/disable_images@<span class="bot-username-bare"></span></code>
+                <button class="btn btn-outline-secondary btn-sm ms-2 copy-btn" title="Скопировать"><i class="fas fa-copy"></i></button>
+            </div>
             <p>
                 Вы можете удалить команду после установки бота.
                 Чтобы включить скриншоты, просто замените <span class="mono">disable</span> на <span class="mono">enable</span>.
@@ -143,6 +156,7 @@
 
     var typeButtons = document.querySelectorAll("#type-selector .platform-btn");
     var platformButtons = document.querySelectorAll("#platform-selector .platform-btn");
+    var usernameInput = document.getElementById("username-input");
 
     typeButtons.forEach(function(btn) {
         btn.addEventListener("click", function() {
@@ -159,6 +173,19 @@
             btn.classList.add("active");
             selectedPlatform = btn.getAttribute("data-platform");
             update();
+        });
+    });
+
+    usernameInput.addEventListener("input", function() { update(); });
+
+    document.querySelectorAll(".copy-btn").forEach(function(btn) {
+        btn.addEventListener("click", function() {
+            var text = btn.parentElement.querySelector(".mono").textContent;
+            var icon = btn.querySelector("i");
+            navigator.clipboard.writeText(text).then(function() {
+                icon.className = "fas fa-check";
+                setTimeout(function() { icon.className = "fas fa-copy"; }, 2000);
+            });
         });
     });
 
@@ -183,8 +210,14 @@
         document.querySelectorAll(".type-name-prepositional").forEach(function(el) {
             el.textContent = typeNamesPrepositional[selectedType];
         });
+        var username = usernameInput.value.trim();
         document.querySelectorAll(".add-placeholder").forEach(function(el) {
-            el.textContent = addPlaceholders[selectedPlatform];
+            el.textContent = username || addPlaceholders[selectedPlatform];
+        });
+
+        var copyVisibility = username ? "visible" : "hidden";
+        document.querySelectorAll(".copy-btn").forEach(function(btn) {
+            btn.style.visibility = copyVisibility;
         });
 
         document.getElementById("channel-steps").style.display = selectedType === "channel" ? "" : "none";

@@ -40,6 +40,14 @@
             <button class="btn btn-outline-dark platform-btn me-2 mb-2" data-platform="Streamate">Streamate</button>
         </div>
 
+        <h4>Your username</h4>
+        <div class="mb-3 col-sm-4">
+            <input type="text" class="form-control" id="username-input" placeholder="Enter your username">
+        </div>
+        <div id="bongacams-warning" class="p-3 mb-3 bg-warning" style="display:none;">
+            Please don't use your display name or real name. Use the username you log in with!
+        </div>
+
         <div id="instructions" style="display:none;">
 
             <p>
@@ -61,8 +69,7 @@
                     <li>Tap the checkmark to confirm</li>
                 </ol>
                 <div class="p-3 mb-3 bg-warning">
-                    <strong>Important:</strong> The bot must be added as an administrator with permission to post messages.
-                    Without admin rights, the bot cannot send notifications to your channel.
+                    <strong>Important:</strong> Without post message rights the bot cannot even reply to commands.
                 </div>
             </div>
 
@@ -80,9 +87,9 @@
             <p>
                 Send this command in your <span class="type-name"></span> to start receiving notifications.
             </p>
-            <p class="mono">/add@<span class="bot-username-bare"></span> <strong><em class="add-placeholder"></em></strong></p>
-            <div id="bongacams-warning" class="p-3 mb-3 bg-warning" style="display:none;">
-                Please don't use your display name or real name. Use the username you log in with!
+            <div class="d-flex align-items-center bg-white rounded border p-2 mb-2">
+                <code class="mono me-auto">/add@<span class="bot-username-bare"></span> <strong><em class="add-placeholder"></em></strong></code>
+                <button class="btn btn-outline-secondary btn-sm ms-2 copy-btn" title="Copy"><i class="fas fa-copy"></i></button>
             </div>
             <p>You can remove this command after the bot is set up.</p>
 
@@ -90,7 +97,10 @@
             <p>
                 By default, the bot notifies when you go offline too. To disable offline notifications, send this command.
             </p>
-            <p class="mono">/disable_offline_notifications@<span class="bot-username-bare"></span></p>
+            <div class="d-flex align-items-center bg-white rounded border p-2 mb-2">
+                <code class="mono me-auto">/disable_offline_notifications@<span class="bot-username-bare"></span></code>
+                <button class="btn btn-outline-secondary btn-sm ms-2 copy-btn" title="Copy"><i class="fas fa-copy"></i></button>
+            </div>
             <p>
                 You can remove this command after the bot is set up.
                 To enable offline notifications again, just replace <span class="mono">disable</span> by <span class="mono">enable</span>.
@@ -100,7 +110,10 @@
             <p>
                 By default, the bot sends a screenshot with each notification. To disable screenshots, send this command.
             </p>
-            <p class="mono">/disable_images@<span class="bot-username-bare"></span></p>
+            <div class="d-flex align-items-center bg-white rounded border p-2 mb-2">
+                <code class="mono me-auto">/disable_images@<span class="bot-username-bare"></span></code>
+                <button class="btn btn-outline-secondary btn-sm ms-2 copy-btn" title="Copy"><i class="fas fa-copy"></i></button>
+            </div>
             <p>
                 You can remove this command after the bot is set up.
                 To enable screenshots again, just replace <span class="mono">disable</span> by <span class="mono">enable</span>.
@@ -139,6 +152,7 @@
 
     var typeButtons = document.querySelectorAll("#type-selector .platform-btn");
     var platformButtons = document.querySelectorAll("#platform-selector .platform-btn");
+    var usernameInput = document.getElementById("username-input");
 
     typeButtons.forEach(function(btn) {
         btn.addEventListener("click", function() {
@@ -155,6 +169,19 @@
             btn.classList.add("active");
             selectedPlatform = btn.getAttribute("data-platform");
             update();
+        });
+    });
+
+    usernameInput.addEventListener("input", function() { update(); });
+
+    document.querySelectorAll(".copy-btn").forEach(function(btn) {
+        btn.addEventListener("click", function() {
+            var text = btn.parentElement.querySelector(".mono").textContent;
+            var icon = btn.querySelector("i");
+            navigator.clipboard.writeText(text).then(function() {
+                icon.className = "fas fa-check";
+                setTimeout(function() { icon.className = "fas fa-copy"; }, 2000);
+            });
         });
     });
 
@@ -176,8 +203,14 @@
         document.querySelectorAll(".type-name").forEach(function(el) {
             el.textContent = selectedType;
         });
+        var username = usernameInput.value.trim();
         document.querySelectorAll(".add-placeholder").forEach(function(el) {
-            el.textContent = addPlaceholders[selectedPlatform];
+            el.textContent = username || addPlaceholders[selectedPlatform];
+        });
+
+        var copyVisibility = username ? "visible" : "hidden";
+        document.querySelectorAll(".copy-btn").forEach(function(btn) {
+            btn.style.visibility = copyVisibility;
         });
 
         document.getElementById("channel-steps").style.display = selectedType === "channel" ? "" : "none";
