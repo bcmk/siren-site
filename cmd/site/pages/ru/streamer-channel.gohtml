@@ -7,257 +7,186 @@
     <meta name="twitter:site" content="@siren_tlg">
     <meta name="twitter:creator" content="@siren_tlg">
     <meta name="twitter:title" content="SIREN">
-    <meta name="twitter:description" content="Бот постит в ваш канал">
+    <meta name="twitter:description" content="Бот постит в ваш канал или группу">
     <meta name="twitter:image" content="https://siren.chat/icons/siren-1024x1024.png">
     <meta name="image" property="og:image" content="https://siren.chat/icons/siren-1024x1024.png">
-    <title>SIREN — Бот постит в ваш канал</title>
+    <title>SIREN — Бот постит в ваш канал или группу</title>
 </head>
 
 <body>
 {{ template "header" }}
 <div class="container">
     <main>
-        <h1 class="mt-4">Бот постит в ваш канал</h1>
-
+        <h1 class="mt-4">Бот постит в ваш канал или группу</h1>
         <p>
             Вы можете автоматически оповещать ваших пользователей в вашем Telegram-канале или группе, когда вы онлайн.
         </p>
 
-        <h4>Шаг 1: Добавьте бота в канал или группу</h4>
-        <p>
-            Сначала найдите бота для вашей стриминговой платформы.
-            По возможности приведены боты, работающие на русском языке.
-            Команды для англоязычных ботов тут <a class="text-muted" href="{{ .lang.en }}">English</a>.
-        </p>
+        <h4>У меня...</h4>
+        <div class="mb-3 platform-selector" id="type-selector">
+            <button class="btn btn-outline-dark platform-btn me-2 mb-2 active" data-type="channel">Канал</button>
+            <button class="btn btn-outline-dark platform-btn me-2 mb-2" data-type="group">Группа</button>
+        </div>
 
-        <div class="row">
-            <div class="col-lg-8 col-xl-7 table-responsive">
-                <table class="table table-sm">
-                    <thead>
-                        <tr>
-                            <th scope="col">Ваш сайт</th>
-                            <th scope="col">Имя бота</th>
-                        </tr>
-                    </thead>
-                    <tr>
-                        <td>Twitch</td>
-                        <td class="text-nowrap overflow-auto mono">@TwitchSirenBot</td>
-                    </tr>
-                    <tr>
-                        <td>Chaturbate</td>
-                        <td class="text-nowrap overflow-auto mono">@ChaturbateSirenBot</td>
-                    </tr>
-                    <tr>
-                        <td>Stripchat</td>
-                        <td class="text-nowrap overflow-auto mono">@StripchatSirenBot</td>
-                    </tr>
-                    <tr>
-                        <td>BongaCams</td>
-                        <td class="text-nowrap overflow-auto mono">@BongaCamsSirenBot</td>
-                    </tr>
-                    <tr>
-                        <td>LiveJasmin</td>
-                        <td class="text-nowrap overflow-auto mono">@RuLiveJasminSirenBot</td>
-                    </tr>
-                    <tr>
-                        <td>CamSoda</td>
-                        <td class="text-nowrap overflow-auto mono">@RuCamSodaSirenBot</td>
-                    </tr>
-                    <tr>
-                        <td>Flirt4Free</td>
-                        <td class="text-nowrap overflow-auto mono">@RuFlirt4FreeSirenBot</td>
-                    </tr>
-                    <tr>
-                        <td>Streamate</td>
-                        <td class="text-nowrap overflow-auto mono">@RuStreamateSirenBot</td>
-                    </tr>
-                </table>
+        <h4>Моя стриминговая платформа</h4>
+        <div class="mb-3 platform-selector" id="platform-selector">
+            <button class="btn btn-outline-dark platform-btn me-2 mb-2 active" data-platform="Twitch">Twitch</button>
+            <button class="btn btn-outline-dark platform-btn me-2 mb-2" data-platform="Chaturbate">Chaturbate</button>
+            <button class="btn btn-outline-dark platform-btn me-2 mb-2" data-platform="Stripchat">Stripchat</button>
+            <button class="btn btn-outline-dark platform-btn me-2 mb-2" data-platform="BongaCams">BongaCams</button>
+            <button class="btn btn-outline-dark platform-btn me-2 mb-2" data-platform="LiveJasmin">LiveJasmin</button>
+            <button class="btn btn-outline-dark platform-btn me-2 mb-2" data-platform="CamSoda">CamSoda</button>
+            <button class="btn btn-outline-dark platform-btn me-2 mb-2" data-platform="Flirt4Free">Flirt4Free</button>
+            <button class="btn btn-outline-dark platform-btn me-2 mb-2" data-platform="Streamate">Streamate</button>
+        </div>
+
+        <div id="instructions" style="display:none;">
+
+            <p>
+                По возможности приведены боты, работающие на русском языке.
+                Команды для англоязычных ботов тут <a class="text-muted" href="{{ .lang.en }}">English</a>.
+            </p>
+
+            <h4>Шаг 1: Добавьте бота в <span class="type-name-accusative"></span></h4>
+
+            <div id="channel-steps">
+                <ol>
+                    <li>Откройте ваш канал в Telegram</li>
+                    <li>Нажмите на название канала вверху, чтобы открыть информацию о канале</li>
+                    <li>Нажмите <strong>Администраторы</strong></li>
+                    <li>Нажмите <strong>Добавить администратора</strong></li>
+                    <li>Найдите <span class="mono bot-username"></span></li>
+                    <li>Выберите бота из результатов поиска</li>
+                    <li>Включите разрешение: <strong>Публикация сообщений</strong></li>
+                    <li>Нажмите галочку для подтверждения</li>
+                </ol>
+                <div class="p-3 mb-3 bg-warning">
+                    <strong>Важно:</strong> Бот должен быть добавлен как администратор с разрешением на публикацию сообщений.
+                    Без прав администратора бот не сможет отправлять оповещения в ваш канал.
+                </div>
             </div>
-        </div>
 
-        <h5 class="mt-4">Для каналов</h5>
-        <ol>
-            <li>Откройте ваш канал в Telegram</li>
-            <li>Нажмите на название канала вверху, чтобы открыть информацию о канале</li>
-            <li>Нажмите <strong>Администраторы</strong></li>
-            <li>Нажмите <strong>Добавить администратора</strong></li>
-            <li>Найдите имя бота из таблицы выше (например, <span class="mono">@ChaturbateSirenBot</span>)</li>
-            <li>Выберите бота из результатов поиска</li>
-            <li>Включите разрешение: <strong>Публикация сообщений</strong></li>
-            <li>Нажмите галочку для подтверждения</li>
-        </ol>
-
-        <h5 class="mt-4">Для групп</h5>
-        <ol>
-            <li>Откройте вашу группу в Telegram</li>
-            <li>Нажмите на название группы вверху, чтобы открыть информацию о группе</li>
-            <li>Нажмите <strong>Добавить участников</strong> (или <strong>Добавить</strong>)</li>
-            <li>Найдите имя бота из таблицы выше (например, <span class="mono">@ChaturbateSirenBot</span>)</li>
-            <li>Выберите бота из результатов поиска, чтобы добавить его</li>
-        </ol>
-
-        <div class="p-3 mb-3 bg-warning">
-            <strong>Важно для каналов:</strong> Бот должен быть добавлен как администратор с разрешением на публикацию сообщений.
-            Без прав администратора бот не сможет отправлять оповещения в ваш канал.
-        </div>
-
-        <h4>Шаг 2: Подпишитесь на свой стрим</h4>
-        <p>
-            Отправьте эту команду в вашем канале или группе, чтобы начать получать оповещения.
-        </p>
-        <div class="row">
-            <div class="col-lg-8 col-xl-7 table-responsive">
-                <table class="table table-sm">
-                    <thead>
-                        <tr>
-                            <th scope="col">Ваш сайт</th>
-                            <th scope="col">Команда</th>
-                        </tr>
-                    </thead>
-                    <tr>
-                        <td>Twitch</td>
-                        <td class="text-nowrap overflow-auto mono">/add@TwitchSirenBot <strong><em>ВАШ_КАНАЛ_TWITCH</em></strong></td>
-                    </tr>
-                    <tr>
-                        <td>Chaturbate</td>
-                        <td class="text-nowrap overflow-auto mono">/add@ChaturbateSirenBot <strong><em>МОДЕЛЬ</em></strong></td>
-                    </tr>
-                    <tr>
-                        <td>Stripchat</td>
-                        <td class="text-nowrap overflow-auto mono">/add@StripchatSirenBot <strong><em>МОДЕЛЬ</em></strong></td>
-                    </tr>
-                    <tr>
-                        <td>BongaCams</td>
-                        <td class="text-nowrap overflow-auto mono">/add@BongaCamsSirenBot <strong><em>МОДЕЛЬ</em></strong></td>
-                    </tr>
-                    <tr>
-                        <td>LiveJasmin</td>
-                        <td class="text-nowrap overflow-auto mono">/add@RuLiveJasminSirenBot <strong><em>МОДЕЛЬ</em></strong></td>
-                    </tr>
-                    <tr>
-                        <td>CamSoda</td>
-                        <td class="text-nowrap overflow-auto mono">/add@RuCamSodaSirenBot <strong><em>МОДЕЛЬ</em></strong></td>
-                    </tr>
-                    <tr>
-                        <td>Flirt4Free</td>
-                        <td class="text-nowrap overflow-auto mono">/add@RuFlirt4FreeSirenBot <strong><em>МОДЕЛЬ</em></strong></td>
-                    </tr>
-                    <tr>
-                        <td>Streamate</td>
-                        <td class="text-nowrap overflow-auto mono">/add@RuStreamateSirenBot <strong><em>МОДЕЛЬ</em></strong></td>
-                    </tr>
-                </table>
+            <div id="group-steps">
+                <ol>
+                    <li>Откройте вашу группу в Telegram</li>
+                    <li>Нажмите на название группы вверху, чтобы открыть информацию о группе</li>
+                    <li>Нажмите <strong>Добавить участников</strong> (или <strong>Добавить</strong>)</li>
+                    <li>Найдите <span class="mono bot-username"></span></li>
+                    <li>Выберите бота из результатов поиска, чтобы добавить его</li>
+                </ol>
             </div>
-        </div>
-        <p>Вы можете удалить команду после установки бота.</p>
 
-        <h4>Шаг 3 (необязательный): Отключить офлайн-оповещения</h4>
-        <p>
-            По умолчанию бот также уведомляет, когда вы уходите офлайн. Чтобы отключить офлайн-оповещения, отправьте эту команду.
-        </p>
-        <div class="row">
-            <div class="col-lg-9 col-xl-8 table-responsive">
-                <table class="table table-sm">
-                    <thead>
-                        <tr>
-                            <th scope="col">Ваш сайт</th>
-                            <th scope="col">Команда</th>
-                        </tr>
-                    </thead>
-                    <tr>
-                        <td>Twitch</td>
-                        <td class="text-nowrap overflow-auto mono">/disable_offline_notifications@TwitchSirenBot</td>
-                    </tr>
-                    <tr>
-                        <td>Chaturbate</td>
-                        <td class="text-nowrap overflow-auto mono">/disable_offline_notifications@ChaturbateSirenBot</td>
-                    </tr>
-                    <tr>
-                        <td>Stripchat</td>
-                        <td class="text-nowrap overflow-auto mono">/disable_offline_notifications@StripchatSirenBot</td>
-                    </tr>
-                    <tr>
-                        <td>BongaCams</td>
-                        <td class="text-nowrap overflow-auto mono">/disable_offline_notifications@BongaCamsSirenBot</td>
-                    </tr>
-                    <tr>
-                        <td>LiveJasmin</td>
-                        <td class="text-nowrap overflow-auto mono">/disable_offline_notifications@RuLiveJasminSirenBot</td>
-                    </tr>
-                    <tr>
-                        <td>CamSoda</td>
-                        <td class="text-nowrap overflow-auto mono">/disable_offline_notifications@RuCamSodaSirenBot</td>
-                    </tr>
-                    <tr>
-                        <td>Flirt4Free</td>
-                        <td class="text-nowrap overflow-auto mono">/disable_offline_notifications@RuFlirt4FreeSirenBot</td>
-                    </tr>
-                    <tr>
-                        <td>Streamate</td>
-                        <td class="text-nowrap overflow-auto mono">/disable_offline_notifications@RuStreamateSirenBot</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <p>
-            Вы можете удалить команду после установки бота.
-            Чтобы вновь включить офлайн-оповещения, просто замените <span class="mono">disable</span> на <span class="mono">enable</span>.
-        </p>
+            <h4>Шаг 2: Подпишитесь на свой стрим</h4>
+            <p>
+                Отправьте эту команду в <span class="type-name-prepositional"></span>, чтобы начать получать оповещения.
+            </p>
+            <p class="mono">/add@<span class="bot-username-bare"></span> <strong><em class="add-placeholder"></em></strong></p>
+            <p>Вы можете удалить команду после установки бота.</p>
 
-        <h4>Шаг 4 (необязательный): Отключить скриншоты</h4>
-        <p>
-            По умолчанию бот отправляет скриншот с каждым оповещением. Чтобы отключить скриншоты, отправьте эту команду.
-        </p>
-        <div class="row">
-            <div class="col-lg-9 col-xl-8 table-responsive">
-                <table class="table table-sm">
-                    <thead>
-                        <tr>
-                            <th scope="col">Ваш сайт</th>
-                            <th scope="col">Команда</th>
-                        </tr>
-                    </thead>
-                    <tr>
-                        <td>Twitch</td>
-                        <td class="text-nowrap overflow-auto mono">/disable_images@TwitchSirenBot</td>
-                    </tr>
-                    <tr>
-                        <td>Chaturbate</td>
-                        <td class="text-nowrap overflow-auto mono">/disable_images@ChaturbateSirenBot</td>
-                    </tr>
-                    <tr>
-                        <td>Stripchat</td>
-                        <td class="text-nowrap overflow-auto mono">/disable_images@StripchatSirenBot</td>
-                    </tr>
-                    <tr>
-                        <td>BongaCams</td>
-                        <td class="text-nowrap overflow-auto mono">/disable_images@BongaCamsSirenBot</td>
-                    </tr>
-                    <tr>
-                        <td>LiveJasmin</td>
-                        <td class="text-nowrap overflow-auto mono">/disable_images@RuLiveJasminSirenBot</td>
-                    </tr>
-                    <tr>
-                        <td>CamSoda</td>
-                        <td class="text-nowrap overflow-auto mono">/disable_images@RuCamSodaSirenBot</td>
-                    </tr>
-                    <tr>
-                        <td>Flirt4Free</td>
-                        <td class="text-nowrap overflow-auto mono">/disable_images@RuFlirt4FreeSirenBot</td>
-                    </tr>
-                    <tr>
-                        <td>Streamate</td>
-                        <td class="text-nowrap overflow-auto mono">/disable_images@RuStreamateSirenBot</td>
-                    </tr>
-                </table>
-            </div>
+            <h4>Шаг 3 (необязательный): Отключить офлайн-оповещения</h4>
+            <p>
+                По умолчанию бот также уведомляет, когда вы уходите офлайн. Чтобы отключить офлайн-оповещения, отправьте эту команду.
+            </p>
+            <p class="mono">/disable_offline_notifications@<span class="bot-username-bare"></span></p>
+            <p>
+                Вы можете удалить команду после установки бота.
+                Чтобы вновь включить офлайн-оповещения, просто замените <span class="mono">disable</span> на <span class="mono">enable</span>.
+            </p>
+
+            <h4>Шаг 4 (необязательный): Отключить скриншоты</h4>
+            <p>
+                По умолчанию бот отправляет скриншот с каждым оповещением. Чтобы отключить скриншоты, отправьте эту команду.
+            </p>
+            <p class="mono">/disable_images@<span class="bot-username-bare"></span></p>
+            <p>
+                Вы можете удалить команду после установки бота.
+                Чтобы включить скриншоты, просто замените <span class="mono">disable</span> на <span class="mono">enable</span>.
+            </p>
         </div>
-        <p>
-            Вы можете удалить команду после установки бота.
-            Чтобы включить скриншоты, просто замените <span class="mono">disable</span> на <span class="mono">enable</span>.
-        </p>
     </main>
     {{ template "footer" . }}
 </div>
+
+<script>
+(function() {
+    var bots = {
+        "Twitch": "TwitchSirenBot",
+        "Chaturbate": "ChaturbateSirenBot",
+        "Stripchat": "StripchatSirenBot",
+        "BongaCams": "BongaCamsSirenBot",
+        "LiveJasmin": "RuLiveJasminSirenBot",
+        "CamSoda": "RuCamSodaSirenBot",
+        "Flirt4Free": "RuFlirt4FreeSirenBot",
+        "Streamate": "RuStreamateSirenBot"
+    };
+
+    var addPlaceholders = {
+        "Twitch": "ВАШ_КАНАЛ_TWITCH",
+        "Chaturbate": "МОДЕЛЬ",
+        "Stripchat": "МОДЕЛЬ",
+        "BongaCams": "МОДЕЛЬ",
+        "LiveJasmin": "МОДЕЛЬ",
+        "CamSoda": "МОДЕЛЬ",
+        "Flirt4Free": "МОДЕЛЬ",
+        "Streamate": "МОДЕЛЬ"
+    };
+
+    var typeNamesAccusative = { "channel": "канал", "group": "группу" };
+    var typeNamesPrepositional = { "channel": "вашем канале", "group": "вашей группе" };
+
+    var selectedType = "channel";
+    var selectedPlatform = "Twitch";
+
+    var typeButtons = document.querySelectorAll("#type-selector .platform-btn");
+    var platformButtons = document.querySelectorAll("#platform-selector .platform-btn");
+
+    typeButtons.forEach(function(btn) {
+        btn.addEventListener("click", function() {
+            typeButtons.forEach(function(b) { b.classList.remove("active"); });
+            btn.classList.add("active");
+            selectedType = btn.getAttribute("data-type");
+            update();
+        });
+    });
+
+    platformButtons.forEach(function(btn) {
+        btn.addEventListener("click", function() {
+            platformButtons.forEach(function(b) { b.classList.remove("active"); });
+            btn.classList.add("active");
+            selectedPlatform = btn.getAttribute("data-platform");
+            update();
+        });
+    });
+
+    update();
+
+    function update() {
+        if (!selectedType || !selectedPlatform) return;
+
+        var botUsername = bots[selectedPlatform];
+        var instructions = document.getElementById("instructions");
+        instructions.style.display = "";
+
+        document.querySelectorAll(".bot-username").forEach(function(el) {
+            el.textContent = "@" + botUsername;
+        });
+        document.querySelectorAll(".bot-username-bare").forEach(function(el) {
+            el.textContent = botUsername;
+        });
+        document.querySelectorAll(".type-name-accusative").forEach(function(el) {
+            el.textContent = typeNamesAccusative[selectedType];
+        });
+        document.querySelectorAll(".type-name-prepositional").forEach(function(el) {
+            el.textContent = typeNamesPrepositional[selectedType];
+        });
+        document.querySelectorAll(".add-placeholder").forEach(function(el) {
+            el.textContent = addPlaceholders[selectedPlatform];
+        });
+
+        document.getElementById("channel-steps").style.display = selectedType === "channel" ? "" : "none";
+        document.getElementById("group-steps").style.display = selectedType === "group" ? "" : "none";
+    }
+})();
+</script>
 </body>
 </html>

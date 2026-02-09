@@ -156,3 +156,13 @@ a.share-button {
     margin-bottom: 1rem;
     margin-top: 0.5rem;
 }
+
+.platform-selector {
+    max-width: 50%;
+}
+
+.platform-btn.active {
+    background-color: $dark;
+    color: #fff;
+    border-color: $dark;
+}
