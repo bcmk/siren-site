@@ -88,4 +88,4 @@ Migrations are versioned in `migrations.go`.
 
 ## Git Conventions
 
-Use one-line commit messages.
+Use one-line commit messages. The first word must be a verb (e.g. "add", "fix", "update", "remove").
