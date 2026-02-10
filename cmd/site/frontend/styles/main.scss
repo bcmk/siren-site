@@ -40,6 +40,13 @@ body {
     padding-right: 30px;
 }
 
+.breadcrumbs {
+    max-width: max-content;
+    padding: 0 30px;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 30px);
+    mask-image: linear-gradient(to right, transparent, black 30px);
+}
+
 .header-name {
     font-weight: 500;
     font-size: 18pt;

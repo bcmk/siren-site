@@ -17,7 +17,7 @@
                     </table>
                 </a>
                 {{ if .breadcrumbs }}
-                <div class="d-none d-md-flex align-items-center flex-grow-1 overflow-hidden text-nowrap ms-2 justify-content-end">
+                <div class="breadcrumbs d-none d-md-flex align-items-center flex-grow-1 overflow-hidden text-nowrap ms-2 justify-content-end">
                     {{ $last := sub (len .breadcrumbs) 1 }}
                     {{ range $i, $bc := .breadcrumbs }}
                         <i class="fas fa-angle-right mx-2 text-light small"></i>
