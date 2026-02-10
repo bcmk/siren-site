@@ -102,3 +102,4 @@ PurgeCSS scans template files in `cmd/site/pages/` for CSS class names. When add
 ## Git Conventions
 
 Use [Conventional Commits](https://www.conventionalcommits.org/) (e.g. `feat:`, `fix:`, `refactor:`, `style:`, `docs:`).
+Keep commit messages to a single line — no body or multi-line descriptions.
