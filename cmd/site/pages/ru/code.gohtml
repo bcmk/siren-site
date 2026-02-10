@@ -30,7 +30,13 @@
 </head>
 
 <body>
-{{ template "header" }}
+{{ template "header" (enhance . (map "breadcrumbs" (make_slice
+    (map "Label" "Главная" "URL" "/")
+    (map "Label" "Сервисы для стримеров" "URL" "/streamer")
+    (map "Label" "Иконки" "URL" "/chic")
+    (map "Label" $pack.HumanName "URL" (print "/chic/p/" $pack.Name))
+    (map "Label" "Код" "URL" "")
+))) }}
 <div class="container" style="margin-bottom: 75px;">
     <main>
         <header class="mt-4">

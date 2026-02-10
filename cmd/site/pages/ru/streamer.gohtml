@@ -14,7 +14,10 @@
 </head>
 
 <body>
-{{ template "header" }}
+{{ template "header" (enhance . (map "breadcrumbs" (make_slice
+    (map "Label" "Главная" "URL" "/")
+    (map "Label" "Сервисы для стримеров" "URL" "")
+))) }}
 <div class="container">
     <main>
         <h1 class="mt-4">Сервисы для стримеров</h1>

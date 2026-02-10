@@ -14,7 +14,11 @@
 </head>
 
 <body>
-{{ template "header" }}
+{{ template "header" (enhance . (map "breadcrumbs" (make_slice
+    (map "Label" "Home" "URL" "/")
+    (map "Label" "Services for Streamers" "URL" "/streamer")
+    (map "Label" "Bot Posts in Your Channel or Group" "URL" "")
+))) }}
 <div class="container">
     <main>
         <h1 class="mt-4">Bot Posts in Your Channel or Group</h1>

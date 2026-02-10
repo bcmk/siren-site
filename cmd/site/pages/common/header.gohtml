@@ -1,26 +1,37 @@
 {{ define "header" }}
     <div class="header">
-        <div class="row">
-            <div class="col-12 col-sm-4">
-                <div style="width: max-content;" class="mx-auto mx-sm-0">
-                    <a class="text-decoration-none" href="/">
-                        <table>
-                            <tr>
-                                <td class="align-middle">
-                                    <div class="header-icon">
-                                        {{ template "header-icon" }}
-                                    </div>
-                                </td>
-                                <td class="align-middle">
-                                    <div class="header-name">SIREN</div>
-                                </td>
-                            </tr>
-                        </table>
-                    </a>
+        <div class="d-sm-flex align-items-center">
+            <div style="display: flex; align-items: center; justify-content: center;" class="justify-content-sm-start flex-shrink-0">
+                <a class="text-decoration-none" href="/">
+                    <table>
+                        <tr>
+                            <td class="align-middle">
+                                <div class="header-icon">
+                                    {{ template "header-icon" }}
+                                </div>
+                            </td>
+                            <td class="align-middle">
+                                <div class="header-name">SIREN</div>
+                            </td>
+                        </tr>
+                    </table>
+                </a>
+                {{ if .breadcrumbs }}
+                <div class="d-none d-md-flex align-items-center flex-shrink-1 overflow-hidden text-nowrap ms-2">
+                    {{ $last := sub (len .breadcrumbs) 1 }}
+                    {{ range $i, $bc := .breadcrumbs }}
+                        <i class="fas fa-angle-right mx-2 text-light small"></i>
+                        {{ if eq $i $last }}
+                            <span class="text-light small text-nowrap opacity-75">{{ $bc.Label }}</span>
+                        {{ else }}
+                            <a href="{{ $bc.URL }}" class="text-light text-decoration-none small text-nowrap">{{ $bc.Label }}</a>
+                        {{ end }}
+                    {{ end }}
                 </div>
+                {{ end }}
             </div>
-            <div class="col-12 col-sm-8 d-flex align-items-center">
-                <div style="width: max-content;" class="mx-auto me-sm-0 title-secondary align-middle text-center">{{ template "header-text" }}</div>
+            <div class="d-flex align-items-center justify-content-center ms-sm-auto flex-shrink-0">
+                <div class="title-secondary text-center">{{ template "header-text" }}</div>
             </div>
         </div>
     </div>

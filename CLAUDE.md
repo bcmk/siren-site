@@ -90,6 +90,10 @@ Migrations are versioned in `migrations.go`.
 
 Run `yarn build` (from `cmd/site/`) after frontend changes without asking.
 
+### PurgeCSS
+
+PurgeCSS scans template files in `cmd/site/pages/` for CSS class names. When adding new Bootstrap utility classes to templates, always run `yarn build` afterward so PurgeCSS picks them up. Do not add classes to the PurgeCSS safelist — just rebuild.
+
 ## Git Conventions
 
-Use one-line commit messages. The first word must be a verb (e.g. "add", "fix", "update", "remove").
+Use [Conventional Commits](https://www.conventionalcommits.org/) (e.g. `feat:`, `fix:`, `refactor:`, `style:`, `docs:`).
