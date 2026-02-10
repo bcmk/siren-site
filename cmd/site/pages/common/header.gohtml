@@ -1,8 +1,8 @@
 {{ define "header" }}
     <div class="header">
-        <div class="d-sm-flex align-items-center">
-            <div style="display: flex; align-items: center; justify-content: center;" class="justify-content-sm-start flex-shrink-0">
-                <a class="text-decoration-none" href="/">
+        <div class="d-sm-flex align-items-center gap-3">
+            <div style="display: flex; align-items: center; justify-content: center; min-width: 0;" class="justify-content-sm-start flex-sm-grow-1">
+                <a class="text-decoration-none flex-shrink-0" href="/">
                     <table>
                         <tr>
                             <td class="align-middle">
@@ -17,7 +17,7 @@
                     </table>
                 </a>
                 {{ if .breadcrumbs }}
-                <div class="d-none d-md-flex align-items-center flex-shrink-1 overflow-hidden text-nowrap ms-2">
+                <div class="d-none d-md-flex align-items-center flex-grow-1 overflow-hidden text-nowrap ms-2 justify-content-end">
                     {{ $last := sub (len .breadcrumbs) 1 }}
                     {{ range $i, $bc := .breadcrumbs }}
                         <i class="fas fa-angle-right mx-2 text-light small"></i>
