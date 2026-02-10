@@ -87,6 +87,10 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.scss', '.css']
   },
+  performance: {
+    maxAssetSize: 512000,
+    maxEntrypointSize: 512000,
+  },
   devtool: false,
   stats: 'minimal',
   mode: 'production'
