@@ -90,6 +90,10 @@ Migrations are versioned in `migrations.go`.
 
 Run `yarn build` (from `cmd/site/`) after frontend changes without asking.
 
+### Browser Testing
+
+When testing UI changes in the browser, resize the window to at least 10 different widths covering all Bootstrap breakpoints and verify the layout at each size. Suggested widths: 375, 576, 640, 768, 850, 996, 1024, 1200, 1400, 1600.
+
 ### PurgeCSS
 
 PurgeCSS scans template files in `cmd/site/pages/` for CSS class names. When adding new Bootstrap utility classes to templates, always run `yarn build` afterward so PurgeCSS picks them up. Do not add classes to the PurgeCSS safelist — just rebuild.
