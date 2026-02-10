@@ -23,6 +23,7 @@ yarn watch          # Development mode with file watching
 ### Backend
 ```bash
 go build -o cmd/site/site ./cmd/site              # Build Go binary into cmd/site/
+cd cmd/site && ./site -c site.ignore.yaml         # Run dev server locally
 scripts/build-site <VERSION>                  # Build with version injection
 scripts/build-and-push <VERSION>              # Multi-platform Docker build and push
 ```
@@ -64,7 +65,7 @@ Each pack contains metadata (name, scale, icons mapping) and can be enabled/disa
 
 ### FontAwesome
 
-This project uses **FontAwesome 5.15.4**. Use `fas`/`fab`/`far` class prefixes, NOT the FontAwesome 6 `fa-solid`/`fa-brands`/`fa-regular` syntax.
+This project uses **FontAwesome 6.7.2**. Use `fas`/`fab`/`far` class prefixes, NOT the FontAwesome 6 `fa-solid`/`fa-brands`/`fa-regular` syntax.
 
 ### Frontend Structure
 

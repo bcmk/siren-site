@@ -26,7 +26,16 @@ module.exports = {
             loader: 'css-loader',
             options: { url: true, importLoaders: 1 }
           },
-          'sass-loader'
+          {
+            loader: 'sass-loader',
+            options: {
+              api: 'modern-compiler',
+              sassOptions: {
+                silenceDeprecations: ['import', 'global-builtin', 'color-functions', 'mixed-decls'],
+                quietDeps: true,
+              }
+            }
+          }
         ]
       },
       {
