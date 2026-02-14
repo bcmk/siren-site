@@ -20,6 +20,7 @@
       "Bash(go mod tidy:*)",
       "Bash(go list:*)",
       "Bash(go fmt:*)",
+      "Bash(go env:*)",
       "Bash(golangci-lint run:*)",
       "Bash(yarn build)",
       "Bash(git diff:*)",
