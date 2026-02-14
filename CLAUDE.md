@@ -2,6 +2,11 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## General
+- Never use `git -C` — the working directory is already the repo root
+- Prefer relative paths
+- If you changed directory to run something, change back to the repo root after
+
 ## Project Overview
 
 This is the website for the [SIREN Telegram bot](https://siren.chat),
