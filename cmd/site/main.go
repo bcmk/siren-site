@@ -39,23 +39,23 @@ type server struct {
 	db           *pgxpool.Pool
 	packs        []sitelib.PackV2
 
-	enIndexTemplate     *ht.Template
-	ruIndexTemplate     *ht.Template
+	enIndexTemplate                 *ht.Template
+	ruIndexTemplate                 *ht.Template
 	enStreamerTemplate              *ht.Template
 	ruStreamerTemplate              *ht.Template
 	enStreamerNotificationsTemplate *ht.Template
 	ruStreamerNotificationsTemplate *ht.Template
 	enStreamerChannelTemplate       *ht.Template
 	ruStreamerChannelTemplate       *ht.Template
-	enChicTemplate      *ht.Template
-	ruChicTemplate      *ht.Template
-	enPackTemplate      *ht.Template
-	ruPackTemplate      *ht.Template
-	enCodeTemplate      *ht.Template
-	ruCodeTemplate      *ht.Template
-	bioHeaderRemover    string
-	partialFaviconsHTML string
-	cssContent string
+	enChicTemplate                  *ht.Template
+	ruChicTemplate                  *ht.Template
+	enPackTemplate                  *ht.Template
+	ruPackTemplate                  *ht.Template
+	enCodeTemplate                  *ht.Template
+	ruCodeTemplate                  *ht.Template
+	bioHeaderRemover                string
+	partialFaviconsHTML             string
+	cssContent                      string
 }
 
 type likeForPack struct {
