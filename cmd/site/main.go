@@ -1,3 +1,4 @@
+// Package main implements the SIREN website server.
 package main
 
 import (
@@ -54,6 +55,7 @@ type server struct {
 	ruCodeTemplate      *ht.Template
 	bioHeaderRemover    string
 	partialFaviconsHTML string
+	cssContent string
 }
 
 type likeForPack struct {
@@ -228,6 +230,7 @@ func (s *server) tparams(r *http.Request, more map[string]interface{}) map[strin
 	res["chic_bucket_url"] = s.cfg.BaseBucketURL
 	res["assets_bucket_url"] = s.cfg.AssetsBucketURL
 	res["partial_favicons_html"] = s.partialFaviconsHTML
+	res["css"] = ht.CSS(s.cssContent)
 
 	return res
 }
@@ -507,6 +510,10 @@ func (s *server) fillRawFiles() {
 	content, err = os.ReadFile("partial/favicons.partial.html")
 	checkErr(err)
 	s.partialFaviconsHTML = string(content)
+
+	content, err = os.ReadFile("static/style.css")
+	checkErr(err)
+	s.cssContent = string(content)
 }
 
 func (s *server) fillTemplates() {
