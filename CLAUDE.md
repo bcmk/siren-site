@@ -95,6 +95,8 @@ Migrations are versioned in `migrations.go`.
 ## Workflow
 
 Run `yarn build` (from `cmd/site/`) after frontend changes without asking.
+Run `gofmt` on changed Go files before committing.
+Run `golangci-lint run ./...` on changed Go files before committing.
 
 ### Browser Testing
 
