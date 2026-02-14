@@ -10,6 +10,7 @@ import (
 	ht "html/template"
 	"io"
 	"log"
+	"net"
 	"net/http"
 	"net/url"
 	"os"
@@ -589,5 +590,8 @@ func main() {
 	r.Handle("/model.html", http.RedirectHandler("/streamer", http.StatusMovedPermanently))
 	r.Handle("/model-ru.html", newRedirectSubdHandler("ru", "/streamer", http.StatusMovedPermanently))
 
-	checkErr(http.ListenAndServe(srv.cfg.ListenAddress, r))
+	ln, err := net.Listen("tcp", srv.cfg.ListenAddress)
+	checkErr(err)
+	linf("listening on %s", ln.Addr())
+	checkErr(http.Serve(ln, r))
 }
