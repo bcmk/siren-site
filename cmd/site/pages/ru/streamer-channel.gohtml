@@ -53,37 +53,37 @@
             Используйте имя пользователя, которое вы вводите при логине!
         </div>
 
-        <div id="instructions" style="display:none;">
+        <div id="instructions">
 
             <p>
                 По возможности приведены боты, работающие на русском языке.
                 Команды для англоязычных ботов тут <a class="text-body-secondary" href="{{ .lang.en }}">English</a>.
             </p>
 
-            <h4>Шаг 1: Добавьте бота в <span class="type-name-accusative"></span></h4>
+            <h4>Шаг 1: Добавьте бота в <span class="type-name-accusative">канал</span></h4>
 
             <div id="channel-steps">
                 <ol>
                     <li>Нажмите на название канала вверху <i class="fas fa-angle-right mx-1"></i> <strong>Администраторы</strong> <i class="fas fa-angle-right mx-1"></i> <strong>Добавить администратора</strong></li>
-                    <li>Найдите <span class="mono bot-username"></span> и добавьте его</li>
+                    <li>Найдите <span class="mono bot-username">@TwitchSirenBot</span> и добавьте его</li>
                     <li><strong>Важно:</strong> включите разрешение <strong>Публикация сообщений</strong> — без этого бот не сможет вам отвечать</li>
                 </ol>
             </div>
 
-            <div id="group-steps">
+            <div id="group-steps" style="display:none;">
                 <ol>
                     <li>Нажмите на название группы вверху <i class="fas fa-angle-right mx-1"></i> <strong>Добавить <span class="opacity-75">[участников]</span></strong></li>
-                    <li>Найдите <span class="mono bot-username"></span> и добавьте его</li>
+                    <li>Найдите <span class="mono bot-username">@TwitchSirenBot</span> и добавьте его</li>
                 </ol>
             </div>
 
             <h4>Шаг 2: Подпишитесь на свой стрим</h4>
             <p>
-                Отправьте эту команду в <span class="type-name-prepositional"></span>, чтобы начать получать оповещения.
+                Отправьте эту команду в <span class="type-name-prepositional">вашем канале</span>, чтобы начать получать оповещения.
             </p>
             <div class="d-flex align-items-center bg-white rounded border p-2 mb-2 overflow-hidden">
-                <code class="mono me-auto text-truncate">/add@<span class="bot-username-bare"></span> <span class="add-placeholder"></span></code>
-                <button class="btn btn-outline-secondary btn-sm ms-2 copy-btn flex-shrink-0" title="Скопировать"><i class="fas fa-copy"></i></button>
+                <code class="mono me-auto text-truncate">/add@<span class="bot-username-bare">TwitchSirenBot</span> <span class="add-placeholder">ВАШ_КАНАЛ_TWITCH</span></code>
+                <button class="btn btn-outline-secondary btn-sm ms-2 copy-btn flex-shrink-0" style="visibility:hidden;" title="Скопировать"><i class="fas fa-copy"></i></button>
             </div>
             <p>Вы можете удалить команду после установки бота.</p>
 
@@ -92,8 +92,8 @@
                 По умолчанию бот также уведомляет, когда вы уходите офлайн. Чтобы отключить офлайн-оповещения, отправьте эту команду.
             </p>
             <div class="d-flex align-items-center bg-white rounded border p-2 mb-2 overflow-hidden">
-                <code class="mono me-auto text-truncate">/disable_offline_notifications@<span class="bot-username-bare"></span></code>
-                <button class="btn btn-outline-secondary btn-sm ms-2 copy-btn flex-shrink-0" title="Скопировать"><i class="fas fa-copy"></i></button>
+                <code class="mono me-auto text-truncate">/disable_offline_notifications@<span class="bot-username-bare">TwitchSirenBot</span></code>
+                <button class="btn btn-outline-secondary btn-sm ms-2 copy-btn flex-shrink-0" style="visibility:hidden;" title="Скопировать"><i class="fas fa-copy"></i></button>
             </div>
             <p>
                 Вы можете удалить команду после установки бота.
@@ -105,8 +105,8 @@
                 По умолчанию бот отправляет скриншот с каждым оповещением. Чтобы отключить скриншоты, отправьте эту команду.
             </p>
             <div class="d-flex align-items-center bg-white rounded border p-2 mb-2 overflow-hidden">
-                <code class="mono me-auto text-truncate">/disable_images@<span class="bot-username-bare"></span></code>
-                <button class="btn btn-outline-secondary btn-sm ms-2 copy-btn flex-shrink-0" title="Скопировать"><i class="fas fa-copy"></i></button>
+                <code class="mono me-auto text-truncate">/disable_images@<span class="bot-username-bare">TwitchSirenBot</span></code>
+                <button class="btn btn-outline-secondary btn-sm ms-2 copy-btn flex-shrink-0" style="visibility:hidden;" title="Скопировать"><i class="fas fa-copy"></i></button>
             </div>
             <p>
                 Вы можете удалить команду после установки бота.

@@ -52,37 +52,37 @@
             Please don't use your display name or real name. Use the username you log in with!
         </div>
 
-        <div id="instructions" style="display:none;">
+        <div id="instructions">
 
             <p>
                 These bots talk in English.
                 For bots in other languages, change the language at the bottom of the page.
             </p>
 
-            <h4>Step 1: Add the bot to your <span class="type-name"></span></h4>
+            <h4>Step 1: Add the bot to your <span class="type-name">channel</span></h4>
 
             <div id="channel-steps">
                 <ol>
                     <li>Tap the channel name at the top <i class="fas fa-angle-right mx-1"></i> <strong>Administrators</strong> <i class="fas fa-angle-right mx-1"></i> <strong>Add Admin</strong></li>
-                    <li>Search for <span class="mono bot-username"></span> and add it</li>
+                    <li>Search for <span class="mono bot-username">@TwitchSirenBot</span> and add it</li>
                     <li><strong>Important:</strong> enable the <strong>Post Messages</strong> permission — without it the bot can't respond to you</li>
                 </ol>
             </div>
 
-            <div id="group-steps">
+            <div id="group-steps" style="display:none;">
                 <ol>
                     <li>Tap the group name at the top <i class="fas fa-angle-right mx-1"></i> <strong>Add <span class="opacity-75">[Members]</span></strong></li>
-                    <li>Search for <span class="mono bot-username"></span> and add it</li>
+                    <li>Search for <span class="mono bot-username">@TwitchSirenBot</span> and add it</li>
                 </ol>
             </div>
 
             <h4>Step 2: Subscribe to your stream</h4>
             <p>
-                Send this command in your <span class="type-name"></span> to start receiving notifications.
+                Send this command in your <span class="type-name">channel</span> to start receiving notifications.
             </p>
             <div class="d-flex align-items-center bg-white rounded border p-2 mb-2 overflow-hidden">
-                <code class="mono me-auto text-truncate">/add@<span class="bot-username-bare"></span> <span class="add-placeholder"></span></code>
-                <button class="btn btn-outline-secondary btn-sm ms-2 copy-btn flex-shrink-0" title="Copy"><i class="fas fa-copy"></i></button>
+                <code class="mono me-auto text-truncate">/add@<span class="bot-username-bare">TwitchSirenBot</span> <span class="add-placeholder">YOUR_TWITCH_CHANNEL</span></code>
+                <button class="btn btn-outline-secondary btn-sm ms-2 copy-btn flex-shrink-0" style="visibility:hidden;" title="Copy"><i class="fas fa-copy"></i></button>
             </div>
             <p>You can remove this command after the bot is set up.</p>
 
@@ -91,8 +91,8 @@
                 By default, the bot notifies when you go offline too. To disable offline notifications, send this command.
             </p>
             <div class="d-flex align-items-center bg-white rounded border p-2 mb-2 overflow-hidden">
-                <code class="mono me-auto text-truncate">/disable_offline_notifications@<span class="bot-username-bare"></span></code>
-                <button class="btn btn-outline-secondary btn-sm ms-2 copy-btn flex-shrink-0" title="Copy"><i class="fas fa-copy"></i></button>
+                <code class="mono me-auto text-truncate">/disable_offline_notifications@<span class="bot-username-bare">TwitchSirenBot</span></code>
+                <button class="btn btn-outline-secondary btn-sm ms-2 copy-btn flex-shrink-0" style="visibility:hidden;" title="Copy"><i class="fas fa-copy"></i></button>
             </div>
             <p>
                 You can remove this command after the bot is set up.
@@ -104,8 +104,8 @@
                 By default, the bot sends a screenshot with each notification. To disable screenshots, send this command.
             </p>
             <div class="d-flex align-items-center bg-white rounded border p-2 mb-2 overflow-hidden">
-                <code class="mono me-auto text-truncate">/disable_images@<span class="bot-username-bare"></span></code>
-                <button class="btn btn-outline-secondary btn-sm ms-2 copy-btn flex-shrink-0" title="Copy"><i class="fas fa-copy"></i></button>
+                <code class="mono me-auto text-truncate">/disable_images@<span class="bot-username-bare">TwitchSirenBot</span></code>
+                <button class="btn btn-outline-secondary btn-sm ms-2 copy-btn flex-shrink-0" style="visibility:hidden;" title="Copy"><i class="fas fa-copy"></i></button>
             </div>
             <p>
                 You can remove this command after the bot is set up.
