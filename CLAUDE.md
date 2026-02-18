@@ -27,8 +27,8 @@ yarn watch          # Development mode with file watching
 
 ### Backend
 ```bash
-go build -o cmd/site/site ./cmd/site              # Build Go binary into cmd/site/
-cd cmd/site && ./site -c site.ignore.yaml         # Run dev server locally
+go build -o cmd/site/site ./cmd/site          # Build Go binary into cmd/site/
+cd cmd/site && ./site -c site.ignore.yaml     # Run dev server locally
 scripts/build-site                            # Build with version from git describe
 scripts/build-and-push                        # Docker build and push (version from git tag)
 ```
@@ -70,7 +70,8 @@ Each pack contains metadata (name, scale, icons mapping) and can be enabled/disa
 
 ### FontAwesome
 
-This project uses **FontAwesome 6.7.2**. Use `fas`/`fab`/`far` class prefixes, NOT the FontAwesome 6 `fa-solid`/`fa-brands`/`fa-regular` syntax.
+This project uses **FontAwesome 6.7.2**. Use `fas`/`fab`/`far` class prefixes,
+NOT the FontAwesome 6 `fa-solid`/`fa-brands`/`fa-regular` syntax.
 
 ### Frontend Structure
 
@@ -95,16 +96,23 @@ Migrations are versioned in `migrations.go`.
 ## Workflow
 
 Run `yarn build` (from `cmd/site/`) after frontend changes without asking.
+Change back to the repo root immediately after.
 Run `gofmt` on changed Go files before committing.
 Run `golangci-lint run ./...` on changed Go files before committing.
 
 ### Browser Testing
 
-When testing UI changes in the browser, resize the window to at least 10 different widths covering all Bootstrap breakpoints and verify the layout at each size. Suggested widths: 375, 576, 640, 768, 850, 996, 1024, 1200, 1400, 1600.
+When testing UI changes in the browser,
+resize the window to at least 10 different widths covering all Bootstrap breakpoints
+and verify the layout at each size.
+Suggested widths: 375, 576, 640, 768, 850, 996, 1024, 1200, 1400, 1600.
 
 ### PurgeCSS
 
-PurgeCSS scans template files in `cmd/site/pages/` for CSS class names. When adding new Bootstrap utility classes to templates, always run `yarn build` afterward so PurgeCSS picks them up. Do not add classes to the PurgeCSS safelist — just rebuild.
+PurgeCSS scans template files in `cmd/site/pages/` for CSS class names.
+When adding new Bootstrap utility classes to templates,
+always run `yarn build` afterward so PurgeCSS picks them up.
+Do not add classes to the PurgeCSS safelist — just rebuild.
 
 ## Git Conventions
 
