@@ -31,7 +31,7 @@ yarn watch          # Development mode with file watching
 go build -o cmd/site/site ./cmd/site          # Build Go binary into cmd/site/
 cd cmd/site && ./site -c site.ignore.yaml     # Run dev server locally
 scripts/build-site                            # Build with version from git describe
-scripts/build-and-push                        # Docker build and push (version from git tag)
+scripts/publish                               # Docker build and push (version from git tag)
 ```
 
 ### Linting
