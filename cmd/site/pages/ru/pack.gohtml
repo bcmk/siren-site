@@ -278,11 +278,11 @@
                         <div class="flex-fill"></div>
                         <div class="d-inline-flex align-items-center">
                             <input id="like" name="like" type="radio" class="like-selection" onchange="like_changed('{{ $pack.Name }}', true)"/>
-                            <label for="like" class="d-inline-flex align-items-center btn-siren btn btn-dark"><i class="fas fa-thumbs-up"></i></label>
+                            <label for="like" class="d-inline-flex align-items-center btn-siren btn btn-dark"><i class="fa-solid fa-thumbs-up"></i></label>
                         </div>
                         <div class="d-inline-flex align-items-center ms-2" style="margin-left: 0.35rem;">
                             <input id="dislike" name="like"  type="radio" class="like-selection" onchange="like_changed('{{ $pack.Name }}', false)"/>
-                            <label for="dislike" class="d-inline-flex align-items-center btn-siren btn btn-dark"><i class="fas fa-thumbs-down"></i></label>
+                            <label for="dislike" class="d-inline-flex align-items-center btn-siren btn btn-dark"><i class="fa-solid fa-thumbs-down"></i></label>
                         </div>
                         <div class="d-flex align-items-center">
                             <b id="likes-{{ $pack.Name }}"

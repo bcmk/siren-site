@@ -50,7 +50,7 @@
         <h4>Your link</h4>
         <div class="d-flex align-items-center bg-white rounded border p-2 mb-2 overflow-hidden">
             <code class="mono me-auto text-truncate" id="generated-link">https://siren.chat/tw/<strong><em id="link-username">YOUR_TWITCH_CHANNEL</em></strong></code>
-            <button class="btn btn-outline-secondary btn-sm ms-2 copy-btn flex-shrink-0" title="Copy" style="visibility:hidden;"><i class="fas fa-copy"></i></button>
+            <button class="btn btn-outline-secondary btn-sm ms-2 copy-btn flex-shrink-0" title="Copy" style="visibility:hidden;"><i class="fa-solid fa-copy"></i></button>
         </div>
 
         <p>
@@ -113,8 +113,8 @@
             var text = btn.parentElement.querySelector(".mono").textContent;
             var icon = btn.querySelector("i");
             navigator.clipboard.writeText(text).then(function() {
-                icon.className = "fas fa-check";
-                setTimeout(function() { icon.className = "fas fa-copy"; }, 2000);
+                icon.className = "fa-solid fa-check";
+                setTimeout(function() { icon.className = "fa-solid fa-copy"; }, 2000);
             });
         });
     });

@@ -64,7 +64,7 @@
 
             <div id="channel-steps">
                 <ol>
-                    <li>Tap the channel name at the top <i class="fas fa-angle-right mx-1"></i> <strong>Administrators</strong> <i class="fas fa-angle-right mx-1"></i> <strong>Add Admin</strong></li>
+                    <li>Tap the channel name at the top <i class="fa-solid fa-angle-right mx-1"></i> <strong>Administrators</strong> <i class="fa-solid fa-angle-right mx-1"></i> <strong>Add Admin</strong></li>
                     <li>Search for <span class="mono bot-username">@TwitchSirenBot</span> and add it</li>
                     <li><strong>Important:</strong> enable the <strong>Post Messages</strong> permission — without it the bot can't respond to you</li>
                 </ol>
@@ -72,7 +72,7 @@
 
             <div id="group-steps" style="display:none;">
                 <ol>
-                    <li>Tap the group name at the top <i class="fas fa-angle-right mx-1"></i> <strong>Add <span class="opacity-75">[Members]</span></strong></li>
+                    <li>Tap the group name at the top <i class="fa-solid fa-angle-right mx-1"></i> <strong>Add <span class="opacity-75">[Members]</span></strong></li>
                     <li>Search for <span class="mono bot-username">@TwitchSirenBot</span> and add it</li>
                 </ol>
             </div>
@@ -83,7 +83,7 @@
             </p>
             <div class="d-flex align-items-center bg-white rounded border p-2 mb-2 overflow-hidden">
                 <code class="mono me-auto text-truncate">/add@<span class="bot-username-bare">TwitchSirenBot</span> <span class="add-placeholder">YOUR_TWITCH_CHANNEL</span></code>
-                <button class="btn btn-outline-secondary btn-sm ms-2 copy-btn flex-shrink-0" style="visibility:hidden;" title="Copy"><i class="fas fa-copy"></i></button>
+                <button class="btn btn-outline-secondary btn-sm ms-2 copy-btn flex-shrink-0" style="visibility:hidden;" title="Copy"><i class="fa-solid fa-copy"></i></button>
             </div>
             <p>You can remove this command after the bot is set up.</p>
 
@@ -93,7 +93,7 @@
             </p>
             <div class="d-flex align-items-center bg-white rounded border p-2 mb-2 overflow-hidden">
                 <code class="mono me-auto text-truncate">/disable_offline_notifications@<span class="bot-username-bare">TwitchSirenBot</span></code>
-                <button class="btn btn-outline-secondary btn-sm ms-2 copy-btn flex-shrink-0" style="visibility:hidden;" title="Copy"><i class="fas fa-copy"></i></button>
+                <button class="btn btn-outline-secondary btn-sm ms-2 copy-btn flex-shrink-0" style="visibility:hidden;" title="Copy"><i class="fa-solid fa-copy"></i></button>
             </div>
             <p>
                 You can remove this command after the bot is set up.
@@ -106,7 +106,7 @@
             </p>
             <div class="d-flex align-items-center bg-white rounded border p-2 mb-2 overflow-hidden">
                 <code class="mono me-auto text-truncate">/disable_images@<span class="bot-username-bare">TwitchSirenBot</span></code>
-                <button class="btn btn-outline-secondary btn-sm ms-2 copy-btn flex-shrink-0" style="visibility:hidden;" title="Copy"><i class="fas fa-copy"></i></button>
+                <button class="btn btn-outline-secondary btn-sm ms-2 copy-btn flex-shrink-0" style="visibility:hidden;" title="Copy"><i class="fa-solid fa-copy"></i></button>
             </div>
             <p>
                 You can remove this command after the bot is set up.
@@ -175,8 +175,8 @@
             var text = btn.parentElement.querySelector(".mono").textContent;
             var icon = btn.querySelector("i");
             navigator.clipboard.writeText(text).then(function() {
-                icon.className = "fas fa-check";
-                setTimeout(function() { icon.className = "fas fa-copy"; }, 2000);
+                icon.className = "fa-solid fa-check";
+                setTimeout(function() { icon.className = "fa-solid fa-copy"; }, 2000);
             });
         });
     });

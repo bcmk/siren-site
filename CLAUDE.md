@@ -71,8 +71,8 @@ Each pack contains metadata (name, scale, icons mapping) and can be enabled/disa
 
 ### FontAwesome
 
-This project uses **FontAwesome 6.7.2**. Use `fas`/`fab`/`far` class prefixes,
-NOT the FontAwesome 6 `fa-solid`/`fa-brands`/`fa-regular` syntax.
+This project uses **FontAwesome 6.7.2** with standard FA6 class prefixes:
+`fa-solid`, `fa-brands`, `fa-regular`.
 
 ### Frontend Structure
 

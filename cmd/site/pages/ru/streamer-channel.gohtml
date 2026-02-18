@@ -65,7 +65,7 @@
 
             <div id="channel-steps">
                 <ol>
-                    <li>Нажмите на название канала вверху <i class="fas fa-angle-right mx-1"></i> <strong>Администраторы</strong> <i class="fas fa-angle-right mx-1"></i> <strong>Добавить администратора</strong></li>
+                    <li>Нажмите на название канала вверху <i class="fa-solid fa-angle-right mx-1"></i> <strong>Администраторы</strong> <i class="fa-solid fa-angle-right mx-1"></i> <strong>Добавить администратора</strong></li>
                     <li>Найдите <span class="mono bot-username">@TwitchSirenBot</span> и добавьте его</li>
                     <li><strong>Важно:</strong> включите разрешение <strong>Публикация сообщений</strong> — без этого бот не сможет вам отвечать</li>
                 </ol>
@@ -73,7 +73,7 @@
 
             <div id="group-steps" style="display:none;">
                 <ol>
-                    <li>Нажмите на название группы вверху <i class="fas fa-angle-right mx-1"></i> <strong>Добавить <span class="opacity-75">[участников]</span></strong></li>
+                    <li>Нажмите на название группы вверху <i class="fa-solid fa-angle-right mx-1"></i> <strong>Добавить <span class="opacity-75">[участников]</span></strong></li>
                     <li>Найдите <span class="mono bot-username">@TwitchSirenBot</span> и добавьте его</li>
                 </ol>
             </div>
@@ -84,7 +84,7 @@
             </p>
             <div class="d-flex align-items-center bg-white rounded border p-2 mb-2 overflow-hidden">
                 <code class="mono me-auto text-truncate">/add@<span class="bot-username-bare">TwitchSirenBot</span> <span class="add-placeholder">ВАШ_КАНАЛ_TWITCH</span></code>
-                <button class="btn btn-outline-secondary btn-sm ms-2 copy-btn flex-shrink-0" style="visibility:hidden;" title="Скопировать"><i class="fas fa-copy"></i></button>
+                <button class="btn btn-outline-secondary btn-sm ms-2 copy-btn flex-shrink-0" style="visibility:hidden;" title="Скопировать"><i class="fa-solid fa-copy"></i></button>
             </div>
             <p>Вы можете удалить команду после установки бота.</p>
 
@@ -94,7 +94,7 @@
             </p>
             <div class="d-flex align-items-center bg-white rounded border p-2 mb-2 overflow-hidden">
                 <code class="mono me-auto text-truncate">/disable_offline_notifications@<span class="bot-username-bare">TwitchSirenBot</span></code>
-                <button class="btn btn-outline-secondary btn-sm ms-2 copy-btn flex-shrink-0" style="visibility:hidden;" title="Скопировать"><i class="fas fa-copy"></i></button>
+                <button class="btn btn-outline-secondary btn-sm ms-2 copy-btn flex-shrink-0" style="visibility:hidden;" title="Скопировать"><i class="fa-solid fa-copy"></i></button>
             </div>
             <p>
                 Вы можете удалить команду после установки бота.
@@ -107,7 +107,7 @@
             </p>
             <div class="d-flex align-items-center bg-white rounded border p-2 mb-2 overflow-hidden">
                 <code class="mono me-auto text-truncate">/disable_images@<span class="bot-username-bare">TwitchSirenBot</span></code>
-                <button class="btn btn-outline-secondary btn-sm ms-2 copy-btn flex-shrink-0" style="visibility:hidden;" title="Скопировать"><i class="fas fa-copy"></i></button>
+                <button class="btn btn-outline-secondary btn-sm ms-2 copy-btn flex-shrink-0" style="visibility:hidden;" title="Скопировать"><i class="fa-solid fa-copy"></i></button>
             </div>
             <p>
                 Вы можете удалить команду после установки бота.
@@ -179,8 +179,8 @@
             var text = btn.parentElement.querySelector(".mono").textContent;
             var icon = btn.querySelector("i");
             navigator.clipboard.writeText(text).then(function() {
-                icon.className = "fas fa-check";
-                setTimeout(function() { icon.className = "fas fa-copy"; }, 2000);
+                icon.className = "fa-solid fa-check";
+                setTimeout(function() { icon.className = "fa-solid fa-copy"; }, 2000);
             });
         });
     });
