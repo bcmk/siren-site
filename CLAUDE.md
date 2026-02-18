@@ -6,6 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Never use `git -C` — the working directory is already the repo root
 - Prefer relative paths
 - If you changed directory to run something, change back to the repo root after
+- Use real em-dash (—) where grammar requires it
 
 ## Project Overview
 
@@ -48,18 +49,18 @@ The main server is in `cmd/site/main.go`:
 - **Templating**: Go `html/template` with bilingual support (English/Russian)
 
 Key files:
-- `cmd/site/main.go` - Server setup, routing, HTTP handlers
-- `cmd/site/migrations.go` - Database schema migrations
-- `cmd/site/request.go` - Query parameter parsing utilities
-- `sitelib/config.go` - Viper configuration parsing
-- `sitelib/packs.go` - Icon pack loading from S3
+- `cmd/site/main.go` — Server setup, routing, HTTP handlers
+- `cmd/site/migrations.go` — Database schema migrations
+- `cmd/site/request.go` — Query parameter parsing utilities
+- `sitelib/config.go` — Viper configuration parsing
+- `sitelib/packs.go` — Icon pack loading from S3
 
 ### Template System
 
 Templates are in `cmd/site/pages/` with language-specific subdirectories:
-- `en/` - English templates
-- `ru/` - Russian templates
-- `common/` - Shared templates
+- `en/` — English templates
+- `ru/` — Russian templates
+- `common/` — Shared templates
 
 Routes are language-aware via subdomain detection (en.domain.com vs ru.domain.com).
 
@@ -75,18 +76,18 @@ NOT the FontAwesome 6 `fa-solid`/`fa-brands`/`fa-regular` syntax.
 
 ### Frontend Structure
 
-- `cmd/site/frontend/index.js` - Webpack entry point
-- `cmd/site/frontend/styles/` - SCSS files (main.scss, chic.scss, switch.scss)
-- `cmd/site/webpack.config.js` - Webpack configuration with PurgeCSSPlugin
+- `cmd/site/frontend/index.js` — Webpack entry point
+- `cmd/site/frontend/styles/` — SCSS files (main.scss, chic.scss, switch.scss)
+- `cmd/site/webpack.config.js` — Webpack configuration with PurgeCSSPlugin
 
 ### Main Routes
 
-- `/` - Landing page
-- `/streamer` - Streamer information
-- `/chic` - Main icon feature
-- `/chic/p/{pack}` - Individual pack page
-- `/chic/code/{pack}` - Code generation for Chaturbate integration
-- `/chic/like/{pack}` - POST endpoint for user preferences
+- `/` — Landing page
+- `/streamer` — Streamer information
+- `/chic` — Main icon feature
+- `/chic/p/{pack}` — Individual pack page
+- `/chic/code/{pack}` — Code generation for Chaturbate integration
+- `/chic/like/{pack}` — POST endpoint for user preferences
 
 ## Database
 
