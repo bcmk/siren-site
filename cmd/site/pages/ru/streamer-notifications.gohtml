@@ -67,12 +67,7 @@
             Наш бот проверяет, какие модели в сети, и сообщает об этом автоматически.
         </p>
 
-        <p>
-            Добавьте такую ссылку на наш бот в свой профиль на Chaturbate, Stripchat и BongaCams.
-            Вы можете настроить иконку с помощью <a href="/chic">конструктора иконок для Chaturbate</a>.
-            Делитесь ссылкой в X, Instagram или других социальных сетях.
-            Пользователи подпишутся на вас по ней в нашем боте.
-        </p>
+        <p id="platform-advice"></p>
 
         <p>Рекомендованный текст для англоязычных пользователей: "Get a notification in Telegram whenever I'm online
             <em><strong>ВАША ССЫЛКА</strong></em>".</p>
@@ -153,6 +148,13 @@
         });
 
         document.getElementById("bongacams-warning").style.display = selectedPlatform === "BongaCams" ? "" : "none";
+
+        var advice = "Добавьте ссылку на наш бот в свой профиль.";
+        if (selectedPlatform === "Chaturbate") {
+            advice += ' Вы можете настроить иконку с помощью <a href="/chic">конструктора иконок для Chaturbate</a>.';
+        }
+        advice += " Делитесь ссылкой в X, Instagram или других социальных сетях. Пользователи подпишутся на вас по ней в нашем боте.";
+        document.getElementById("platform-advice").innerHTML = advice;
     }
 })();
 </script>

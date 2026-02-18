@@ -62,11 +62,7 @@
             Our bot checks who is online and sends notifications automatically.
         </p>
 
-        <p>
-            Add the subscription link to your profile page on Chaturbate, Stripchat and BongaCams.
-            You can set up an icon in Chaturbate via our <a href="/chic">Chaturbate icons constructor</a>.
-            Also share this link on X, Instagram or other social media.
-        </p>
+        <p id="platform-advice"></p>
 
         <p>Recommended text: "Get a notification in Telegram whenever I'm online <em><strong>YOUR LINK</strong></em>".</p>
         <p>These bots talk in English. For bots in other languages, change the language at the bottom of the page.</p>
@@ -143,6 +139,13 @@
         });
 
         document.getElementById("bongacams-warning").style.display = selectedPlatform === "BongaCams" ? "" : "none";
+
+        var advice = "Add the subscription link to your profile page.";
+        if (selectedPlatform === "Chaturbate") {
+            advice += ' You can set up an icon via our <a href="/chic">Chaturbate Icons Constructor</a>.';
+        }
+        advice += " Also share this link on X, Instagram or other social media.";
+        document.getElementById("platform-advice").innerHTML = advice;
     }
 })();
 </script>
