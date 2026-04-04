@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-set -euo pipefail
-
-SIREN_SITE_VERSION="$(git describe --tags)"
-
-docker buildx build --platform linux/amd64 --build-arg SIREN_SITE_VERSION="${SIREN_SITE_VERSION#v}" -t "site:$SIREN_SITE_VERSION" -t "registry.digitalocean.com/reg-xiren/site:$SIREN_SITE_VERSION" --progress=plain .
-docker push "registry.digitalocean.com/reg-xiren/site:$SIREN_SITE_VERSION"
-./scripts/registry-cleanup

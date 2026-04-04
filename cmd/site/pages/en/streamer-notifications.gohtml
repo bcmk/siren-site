@@ -29,6 +29,7 @@
         <h4>My streaming platform is...</h4>
         <div class="mb-3 platform-selector col-md-8" id="platform-selector">
             <button class="btn btn-outline-dark platform-btn me-2 mb-2 active" data-platform="Twitch">Twitch</button>
+            <button class="btn btn-outline-dark platform-btn me-2 mb-2" data-platform="Kick">Kick</button>
             <button class="btn btn-outline-dark platform-btn me-2 mb-2" data-platform="Chaturbate">Chaturbate</button>
             <button class="btn btn-outline-dark platform-btn me-2 mb-2" data-platform="Stripchat">Stripchat</button>
             <button class="btn btn-outline-dark platform-btn me-2 mb-2" data-platform="BongaCams">BongaCams</button>
@@ -74,14 +75,21 @@
 <script>
 (function() {
     var prefixes = {
-        "Twitch": "tw", "Chaturbate": "cb", "Stripchat": "sc",
-        "BongaCams": "bc", "LiveJasmin": "lj", "CamSoda": "cs",
-        "Flirt4Free": "f4f", "Streamate": "sm",
+        "Twitch": "tw",
+        "Kick": "kick",
+        "Chaturbate": "cb",
+        "Stripchat": "sc",
+        "BongaCams": "bc",
+        "LiveJasmin": "lj",
+        "CamSoda": "cs",
+        "Flirt4Free": "f4f",
+        "Streamate": "sm",
         "CAM4": "c4"
     };
 
     var placeholders = {
         "Twitch": "YOUR_TWITCH_CHANNEL",
+        "Kick": "YOUR_KICK_CHANNEL",
         "Chaturbate": "YOUR_USERNAME",
         "Stripchat": "YOUR_USERNAME",
         "BongaCams": "YOUR_USERNAME",

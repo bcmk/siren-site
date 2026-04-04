@@ -35,6 +35,7 @@
         <h4>Моя стриминговая платформа...</h4>
         <div class="mb-3 platform-selector col-md-8" id="platform-selector">
             <button class="btn btn-outline-dark platform-btn me-2 mb-2 active" data-platform="Twitch">Twitch</button>
+            <button class="btn btn-outline-dark platform-btn me-2 mb-2" data-platform="Kick">Kick</button>
             <button class="btn btn-outline-dark platform-btn me-2 mb-2" data-platform="Chaturbate">Chaturbate</button>
             <button class="btn btn-outline-dark platform-btn me-2 mb-2" data-platform="Stripchat">Stripchat</button>
             <button class="btn btn-outline-dark platform-btn me-2 mb-2" data-platform="BongaCams">BongaCams</button>
@@ -122,6 +123,7 @@
 (function() {
     var bots = {
         "Twitch": "TwitchSirenBot",
+        "Kick": "KickSirenBot",
         "Chaturbate": "ChaturbateSirenBot",
         "Stripchat": "StripchatSirenBot",
         "BongaCams": "BongaCamsSirenBot",
@@ -134,6 +136,7 @@
 
     var addPlaceholders = {
         "Twitch": "ВАШ_КАНАЛ_TWITCH",
+        "Kick": "ВАШ_КАНАЛ_KICK",
         "Chaturbate": "МОДЕЛЬ",
         "Stripchat": "МОДЕЛЬ",
         "BongaCams": "МОДЕЛЬ",
