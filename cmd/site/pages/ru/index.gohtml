@@ -1,15 +1,29 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" xmlns:og="http://ogp.me/ns#">
 
 <head>
     {{ template "head" . }}
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="@siren_tlg">
     <meta name="twitter:creator" content="@siren_tlg">
-    <meta name="twitter:title" content="SIREN">
-    <meta name="twitter:description" content="Telegram-бот для оповещений о вебкастах">
-    <meta name="twitter:image" content="https://siren.chat/icons/siren-1024x1024.png">
-    <meta name="image" property="og:image" content="https://siren.chat/icons/siren-1024x1024.png">
+    <meta name="twitter:title" content="SIREN — Telegram-бот для оповещений о вебкастах">
+    <meta name="twitter:description" content="Получайте уведомление в Telegram, как только ваши любимые стримеры выходят в эфир — Twitch, Kick, Chaturbate и другие.">
+    <meta name="twitter:image" content="{{ .assets_bucket_url }}/icons/siren-1024x1024.png">
+    <meta name="twitter:image:alt" content="Логотип SIREN">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="SIREN">
+    <meta property="og:locale" content="ru_RU">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:url" content="{{ .lang_base_url }}/">
+    <meta property="og:title" content="SIREN — Telegram-бот для оповещений о вебкастах">
+    <meta property="og:description" content="Получайте уведомление в Telegram, как только ваши любимые стримеры выходят в эфир — Twitch, Kick, Chaturbate и другие.">
+    <meta property="og:image" content="{{ .assets_bucket_url }}/icons/siren-1024x1024.png">
+    <meta property="og:image:width" content="1024">
+    <meta property="og:image:height" content="1024">
+    <meta property="og:image:alt" content="Логотип SIREN">
+    <link rel="alternate" hreflang="en" href="https://{{ .base_domain }}/">
+    <link rel="alternate" hreflang="ru" href="https://{{ .ru_domain }}/">
+    <link rel="alternate" hreflang="x-default" href="https://{{ .base_domain }}/">
     <title>SIREN — Telegram-бот для оповещений о вебкастах</title>
 </head>
 

@@ -10,17 +10,25 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@siren_tlg">
     <meta name="twitter:creator" content="@siren_tlg">
-    <meta name="twitter:title" content="{{ $pack.HumanName }} — пакет иконок для Chaturbate">
-    <meta name="twitter:description" content="Бесплатные иконки для вашего профиля на Chaturbate">
+    <meta name="twitter:title" content="Добавьте иконки {{ $pack.HumanName }} в профиль на Chaturbate">
+    <meta name="twitter:description" content="Готовый код, чтобы добавить иконки {{ $pack.HumanName }} в ваш профиль на Chaturbate.">
     <meta name="twitter:image" content="{{ .chic_bucket_url }}/{{ $pack.Name }}/banner.jpg">
+    <meta name="twitter:image:alt" content="Пакет иконок {{ $pack.HumanName }} для Chaturbate">
     <meta property="og:type" content="website">
+    <meta property="og:site_name" content="SIREN">
+    <meta property="og:locale" content="ru_RU">
+    <meta property="og:locale:alternate" content="en_US">
     <meta property="og:url" content="{{ .lang_base_url }}/chic/code/{{ $pack.Name }}">
-    <meta property="og:title" content="{{ $pack.HumanName }} — пакет иконок для Chaturbate">
-    <meta property="og:description" content="Бесплатные иконки для вашего профиля на Chaturbate">
+    <meta property="og:title" content="Добавьте иконки {{ $pack.HumanName }} в профиль на Chaturbate">
+    <meta property="og:description" content="Готовый код, чтобы добавить иконки {{ $pack.HumanName }} в ваш профиль на Chaturbate.">
     <meta property="og:image" content="{{ .chic_bucket_url }}/{{ $pack.Name }}/banner.jpg">
     <meta property="og:image:width" content="900">
     <meta property="og:image:height" content="900">
-    <title>{{ $pack.HumanName }} — пакет иконок для Chaturbate</title>
+    <meta property="og:image:alt" content="Пакет иконок {{ $pack.HumanName }} для Chaturbate">
+    <link rel="alternate" hreflang="en" href="https://{{ .base_domain }}/chic/code/{{ $pack.Name }}">
+    <link rel="alternate" hreflang="ru" href="https://{{ .ru_domain }}/chic/code/{{ $pack.Name }}">
+    <link rel="alternate" hreflang="x-default" href="https://{{ .base_domain }}/chic/code/{{ $pack.Name }}">
+    <title>Добавьте иконки {{ $pack.HumanName }} в профиль на Chaturbate</title>
     <script>
         function copyTextToClipboard(text) {
             navigator.clipboard.writeText(text).then(

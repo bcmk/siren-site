@@ -1,15 +1,29 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" xmlns:og="http://ogp.me/ns#">
 
 <head>
     {{ template "head" . }}
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="@siren_tlg">
     <meta name="twitter:creator" content="@siren_tlg">
-    <meta name="twitter:title" content="SIREN">
-    <meta name="twitter:description" content="Бот постит в ваш канал или группу">
-    <meta name="twitter:image" content="https://siren.chat/icons/siren-1024x1024.png">
-    <meta name="image" property="og:image" content="https://siren.chat/icons/siren-1024x1024.png">
+    <meta name="twitter:title" content="Бот постит в ваш канал или группу">
+    <meta name="twitter:description" content="SIREN автоматически постит в ваш Telegram-канал или группу, когда вы начинаете трансляцию.">
+    <meta name="twitter:image" content="{{ .assets_bucket_url }}/icons/siren-1024x1024.png">
+    <meta name="twitter:image:alt" content="Логотип SIREN">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="SIREN">
+    <meta property="og:locale" content="ru_RU">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:url" content="{{ .lang_base_url }}/streamer/channel">
+    <meta property="og:title" content="Бот постит в ваш канал или группу">
+    <meta property="og:description" content="SIREN автоматически постит в ваш Telegram-канал или группу, когда вы начинаете трансляцию.">
+    <meta property="og:image" content="{{ .assets_bucket_url }}/icons/siren-1024x1024.png">
+    <meta property="og:image:width" content="1024">
+    <meta property="og:image:height" content="1024">
+    <meta property="og:image:alt" content="Логотип SIREN">
+    <link rel="alternate" hreflang="en" href="https://{{ .base_domain }}/streamer/channel">
+    <link rel="alternate" hreflang="ru" href="https://{{ .ru_domain }}/streamer/channel">
+    <link rel="alternate" hreflang="x-default" href="https://{{ .base_domain }}/streamer/channel">
     <title>SIREN — Бот постит в ваш канал или группу</title>
 </head>
 
