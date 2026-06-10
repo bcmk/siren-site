@@ -174,7 +174,7 @@
                     <div class="row mt-2"/>
                         <div class="d-flex col-12 col-lg-9">
                             <div class="d-flex align-self-center form-icon">
-                                <img src="{{ $chic_bucket_url }}/{{ $pack.Name }}/{{ versioned $pack "fanclub" }}.{{ index $img_exts $pack.FinalType }}?rev={{ .ctx.pack.Revision }}"
+                                <img src="{{ $chic_bucket_url }}/{{ $pack.Name }}/{{ versioned $pack "fanclub" }}.{{ index $img_exts $pack.FinalType }}?rev={{ $pack.Revision }}"
                                      alt=""
                                      style="height: {{ $pack.Scale }}%;"
                                      class="align-self-center">
