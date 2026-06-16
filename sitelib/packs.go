@@ -43,7 +43,7 @@ func ParsePacksV2(config *Config) []PackV2 {
 		ctx,
 		awsconfig.WithRegion(config.BucketRegion),
 		awsconfig.WithCredentialsProvider(
-			credentials.NewStaticCredentialsProvider(config.BucketAccessKey, config.BucketSecretKey, ""),
+			credentials.NewStaticCredentialsProvider(config.BucketAccessKey, string(config.BucketSecretKey), ""),
 		),
 	)
 	cmdlib.CheckErr(err)

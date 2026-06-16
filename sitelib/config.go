@@ -43,7 +43,7 @@ type PackV2 struct {
 
 // Config represents site or converter config
 type Config struct {
-	ConnectionString string `mapstructure:"connection_string"`
+	ConnectionString Secret `mapstructure:"connection_string"`
 	ListenAddress    string `mapstructure:"listen_address"`
 	BaseURL          string `mapstructure:"base_url"`
 	BaseDomain       string `mapstructure:"base_domain"`
@@ -51,7 +51,7 @@ type Config struct {
 	BucketRegion     string `mapstructure:"bucket_region"`
 	BucketEndpoint   string `mapstructure:"bucket_endpoint"`
 	BucketAccessKey  string `mapstructure:"bucket_access_key"`
-	BucketSecretKey  string `mapstructure:"bucket_secret_key"`
+	BucketSecretKey  Secret `mapstructure:"bucket_secret_key"`
 	BaseBucketURL    string `mapstructure:"base_bucket_url"`
 	AssetsBucketURL  string `mapstructure:"assets_bucket_url"`
 	Debug            bool   `mapstructure:"debug"`

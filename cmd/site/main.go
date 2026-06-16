@@ -546,9 +546,16 @@ func (s *server) fillEnabledPacks() {
 	s.enabledPacks = packs
 }
 
+func (s *server) logConfig() {
+	cfgString, err := json.MarshalIndent(s.cfg, "", "    ")
+	checkErr(err)
+	linf("site config: " + string(cfgString))
+}
+
 func main() {
 	linf("starting...")
 	srv := &server{cfg: sitelib.ReadConfig()}
+	srv.logConfig()
 	srv.packs = sitelib.ParsePacksV2(srv.cfg)
 	for _, pack := range srv.packs {
 		if pack.ChaturbateIconsScale == nil {
@@ -561,7 +568,7 @@ func main() {
 	srv.fillRawFiles()
 	srv.fillTemplates()
 	srv.fillEnabledPacks()
-	db, err := pgxpool.New(context.Background(), srv.cfg.ConnectionString)
+	db, err := pgxpool.New(context.Background(), string(srv.cfg.ConnectionString))
 	checkErr(err)
 	srv.db = db
 	srv.createDatabase()
