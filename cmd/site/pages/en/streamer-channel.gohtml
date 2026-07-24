@@ -65,7 +65,7 @@
         <div class="mb-3 col-sm-4">
             <input type="text" class="form-control" id="username-input" placeholder="Enter your username">
         </div>
-        <div id="bongacams-warning" class="p-3 mb-3 bg-warning" style="display:none;">
+        <div data-only-platform="BongaCams" class="p-3 mb-3 bg-warning" style="display:none;">
             Please don't use your display name or real name. Use the username you log in with!
         </div>
 
@@ -95,11 +95,11 @@
 
             <h4>Step 2: Subscribe to your stream</h4>
             <p>
-                Send this command in your <span class="type-name">channel</span> to start receiving notifications.
+                Send this command right in your <span class="type-name">channel</span> to start receiving notifications.
             </p>
             <div class="d-flex align-items-center bg-white rounded border p-2 mb-2 overflow-hidden">
                 <code class="mono me-auto text-truncate">/add@<span class="bot-username-bare">TwitchSirenBot</span> <span class="add-placeholder">YOUR_TWITCH_CHANNEL</span></code>
-                <button class="btn btn-outline-secondary btn-sm ms-2 copy-btn flex-shrink-0" style="visibility:hidden;" title="Copy"><i class="fa-solid fa-copy"></i></button>
+                <button data-gated-by="username" class="btn btn-outline-secondary btn-sm ms-2 copy-btn flex-shrink-0" style="visibility:hidden;" title="Copy"><i class="fa-solid fa-copy"></i></button>
             </div>
             <p>You can remove this command after the bot is set up.</p>
 
@@ -109,7 +109,7 @@
             </p>
             <div class="d-flex align-items-center bg-white rounded border p-2 mb-2 overflow-hidden">
                 <code class="mono me-auto text-truncate">/disable_offline_notifications@<span class="bot-username-bare">TwitchSirenBot</span></code>
-                <button class="btn btn-outline-secondary btn-sm ms-2 copy-btn flex-shrink-0" style="visibility:hidden;" title="Copy"><i class="fa-solid fa-copy"></i></button>
+                <button data-gated-by="username" class="btn btn-outline-secondary btn-sm ms-2 copy-btn flex-shrink-0" style="visibility:hidden;" title="Copy"><i class="fa-solid fa-copy"></i></button>
             </div>
             <p>
                 You can remove this command after the bot is set up.
@@ -122,12 +122,62 @@
             </p>
             <div class="d-flex align-items-center bg-white rounded border p-2 mb-2 overflow-hidden">
                 <code class="mono me-auto text-truncate">/disable_images@<span class="bot-username-bare">TwitchSirenBot</span></code>
-                <button class="btn btn-outline-secondary btn-sm ms-2 copy-btn flex-shrink-0" style="visibility:hidden;" title="Copy"><i class="fa-solid fa-copy"></i></button>
+                <button data-gated-by="username" class="btn btn-outline-secondary btn-sm ms-2 copy-btn flex-shrink-0" style="visibility:hidden;" title="Copy"><i class="fa-solid fa-copy"></i></button>
             </div>
             <p>
                 You can remove this command after the bot is set up.
                 To enable screenshots again, just replace <span class="mono">disable</span> by <span class="mono">enable</span>.
             </p>
+
+            <div data-only-platform="Chaturbate" style="display:none;">
+                <h4>Step 5 (optional): Earn affiliate commission</h4>
+                <p>
+                    On Chaturbate, you can route these go-live posts through your own affiliate link,
+                    so every fan you bring in earns you commission. First pick how you want to be paid.
+                </p>
+                <ul>
+                    <li>
+                        <strong>Tokens per sign-up</strong> — open
+                        <a href="https://chaturbate.com/b?tour=LQps&amp;campaign=WIl8t&amp;track=default" target="_blank" rel="sponsored noopener">chaturbate.com/b</a>,
+                        scroll to the very bottom and copy the <strong>first</strong> link there.
+                        You get 10 tokens for every user who registers, and 500 tokens for one who
+                        starts broadcasting (they must earn $20.00 first).
+                    </li>
+                    <li>
+                        <strong>20% revenue share</strong> — open
+                        <a href="https://chaturbate.com/affiliates?tour=LQps&amp;campaign=WIl8t&amp;track=default" target="_blank" rel="sponsored noopener">chaturbate.com/affiliates</a>,
+                        scroll to the very bottom and copy the link there.
+                        You get 20% of everything your users spend.
+                    </li>
+                </ul>
+                <p>The link looks something like this:</p>
+                <div class="bg-white rounded border p-2 mb-3 overflow-auto">
+                    <span class="mono">https://chaturbate.com/in/?tour=LQps&amp;campaign=WIl8t&amp;track=default&amp;room=your_cam_name</span>
+                </div>
+                <p class="text-body-secondary"><small>
+                    The pages and payouts above are what Chaturbate published at the time of writing
+                    and may have changed since. Check their site for the current terms.
+                </small></p>
+
+                <h4>My affiliate link is...</h4>
+                <div class="mb-3 col-md-8">
+                    <input type="text" class="form-control" id="affiliate-input"
+                           pattern="(?=[^\s]*[?&amp;]campaign=[^&amp;\s])(?=[^\s]*[?&amp;]tour=[^&amp;\s])(?=[^\s]*[?&amp;]track=[^&amp;\s])https://(?:[a-z0-9-]+\.)*chaturbate\.com/[^\s]*"
+                           placeholder="Paste your affiliate link">
+                    <div class="invalid-feedback">
+                        This link will not work. Copy it again from one of the pages above.
+                        If you are sure it is right, write to
+                        <a href="mailto:siren.chat@gmail.com">siren.chat@gmail.com</a>.
+                    </div>
+                </div>
+
+                <p>As an admin, send this command in your <span class="type-name">channel</span>.</p>
+                <div class="d-flex align-items-center bg-white rounded border p-2 mb-2 overflow-hidden">
+                    <code class="mono me-auto text-truncate">/affiliate@<span class="bot-username-bare">ChaturbateAlarmBot</span> <span class="affiliate-placeholder">YOUR_LINK</span></code>
+                    <button data-gated-by="affiliate" class="btn btn-outline-secondary btn-sm ms-2 copy-btn flex-shrink-0" style="visibility:hidden;" title="Copy"><i class="fa-solid fa-copy"></i></button>
+                </div>
+                <p>To remove it later, send <span class="mono">/reset_affiliate@<span class="bot-username-bare">ChaturbateAlarmBot</span></span>.</p>
+            </div>
         </div>
     </main>
     {{ template "footer" . }}
@@ -169,6 +219,8 @@
     var typeButtons = document.querySelectorAll("#type-selector .platform-btn");
     var platformButtons = document.querySelectorAll("#platform-selector .platform-btn");
     var usernameInput = document.getElementById("username-input");
+    var affiliateInput = document.getElementById("affiliate-input");
+    var affiliatePattern = affiliateInput && new RegExp("^(?:" + affiliateInput.pattern + ")$", "u");
 
     typeButtons.forEach(function(btn) {
         btn.addEventListener("click", function() {
@@ -189,6 +241,9 @@
     });
 
     usernameInput.addEventListener("input", function() { update(); });
+    if (affiliateInput) {
+        affiliateInput.addEventListener("input", function() { update(); });
+    }
 
     document.querySelectorAll(".copy-btn").forEach(function(btn) {
         btn.addEventListener("click", function() {
@@ -224,14 +279,25 @@
             el.textContent = username || addPlaceholders[selectedPlatform];
         });
 
-        var copyVisibility = username ? "visible" : "hidden";
-        document.querySelectorAll(".copy-btn").forEach(function(btn) {
-            btn.style.visibility = copyVisibility;
-        });
-
         document.getElementById("channel-steps").style.display = selectedType === "channel" ? "" : "none";
         document.getElementById("group-steps").style.display = selectedType === "group" ? "" : "none";
-        document.getElementById("bongacams-warning").style.display = selectedPlatform === "BongaCams" ? "" : "none";
+        document.querySelectorAll("[data-only-platform]").forEach(function(el) {
+            el.style.display = el.dataset.onlyPlatform === selectedPlatform ? "" : "none";
+        });
+
+        var affiliate = affiliateInput ? affiliateInput.value.trim() : "";
+        var affiliateOk = affiliate !== "" && affiliatePattern.test(affiliate.toLowerCase());
+        if (affiliateInput) {
+            affiliateInput.classList.toggle("is-invalid", affiliate !== "" && !affiliateOk);
+            document.querySelectorAll(".affiliate-placeholder").forEach(function(el) {
+                el.textContent = affiliateOk ? affiliate : "YOUR_LINK";
+            });
+        }
+
+        var ready = { username: username !== "", affiliate: affiliateOk };
+        document.querySelectorAll("[data-gated-by]").forEach(function(btn) {
+            btn.style.visibility = ready[btn.dataset.gatedBy] ? "visible" : "hidden";
+        });
     }
 })();
 </script>

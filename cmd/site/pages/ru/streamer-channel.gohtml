@@ -65,7 +65,7 @@
         <div class="mb-3 col-sm-4">
             <input type="text" class="form-control" id="username-input" placeholder="Введите ваш никнейм">
         </div>
-        <div id="bongacams-warning" class="p-3 mb-3 bg-warning" style="display:none;">
+        <div data-only-platform="BongaCams" class="p-3 mb-3 bg-warning" style="display:none;">
             Пожалуйста, не используйте "отображаемое имя" или "настоящее имя".
             Используйте имя пользователя, которое вы вводите при логине!
         </div>
@@ -96,11 +96,11 @@
 
             <h4>Шаг 2: Подпишитесь на свой стрим</h4>
             <p>
-                Отправьте эту команду в <span class="type-name-prepositional">вашем канале</span>, чтобы начать получать оповещения.
+                Отправьте эту команду прямо в <span class="type-name-prepositional">вашем канале</span>, чтобы начать получать оповещения.
             </p>
             <div class="d-flex align-items-center bg-white rounded border p-2 mb-2 overflow-hidden">
                 <code class="mono me-auto text-truncate">/add@<span class="bot-username-bare">TwitchSirenBot</span> <span class="add-placeholder">ВАШ_КАНАЛ_TWITCH</span></code>
-                <button class="btn btn-outline-secondary btn-sm ms-2 copy-btn flex-shrink-0" style="visibility:hidden;" title="Скопировать"><i class="fa-solid fa-copy"></i></button>
+                <button data-gated-by="username" class="btn btn-outline-secondary btn-sm ms-2 copy-btn flex-shrink-0" style="visibility:hidden;" title="Скопировать"><i class="fa-solid fa-copy"></i></button>
             </div>
             <p>Вы можете удалить команду после установки бота.</p>
 
@@ -110,7 +110,7 @@
             </p>
             <div class="d-flex align-items-center bg-white rounded border p-2 mb-2 overflow-hidden">
                 <code class="mono me-auto text-truncate">/disable_offline_notifications@<span class="bot-username-bare">TwitchSirenBot</span></code>
-                <button class="btn btn-outline-secondary btn-sm ms-2 copy-btn flex-shrink-0" style="visibility:hidden;" title="Скопировать"><i class="fa-solid fa-copy"></i></button>
+                <button data-gated-by="username" class="btn btn-outline-secondary btn-sm ms-2 copy-btn flex-shrink-0" style="visibility:hidden;" title="Скопировать"><i class="fa-solid fa-copy"></i></button>
             </div>
             <p>
                 Вы можете удалить команду после установки бота.
@@ -123,12 +123,63 @@
             </p>
             <div class="d-flex align-items-center bg-white rounded border p-2 mb-2 overflow-hidden">
                 <code class="mono me-auto text-truncate">/disable_images@<span class="bot-username-bare">TwitchSirenBot</span></code>
-                <button class="btn btn-outline-secondary btn-sm ms-2 copy-btn flex-shrink-0" style="visibility:hidden;" title="Скопировать"><i class="fa-solid fa-copy"></i></button>
+                <button data-gated-by="username" class="btn btn-outline-secondary btn-sm ms-2 copy-btn flex-shrink-0" style="visibility:hidden;" title="Скопировать"><i class="fa-solid fa-copy"></i></button>
             </div>
             <p>
                 Вы можете удалить команду после установки бота.
                 Чтобы включить скриншоты, просто замените <span class="mono">disable</span> на <span class="mono">enable</span>.
             </p>
+
+            <div data-only-platform="Chaturbate" style="display:none;">
+                <h4>Шаг 5 (необязательный): Зарабатывайте партнёрскую комиссию</h4>
+                <p>
+                    На Chaturbate вы можете пропускать эти оповещения через свою партнёрскую ссылку,
+                    чтобы каждый приведённый вами пользователь приносил вам комиссию.
+                    Сначала выберите, как вы хотите получать оплату.
+                </p>
+                <ul>
+                    <li>
+                        <strong>Токены за регистрацию</strong> — откройте
+                        <a href="https://chaturbate.com/b?tour=LQps&amp;campaign=WIl8t&amp;track=default" target="_blank" rel="sponsored noopener">chaturbate.com/b</a>,
+                        прокрутите в самый низ и скопируйте <strong>первую</strong> ссылку оттуда.
+                        Вы получаете 10 токенов за каждого зарегистрировавшегося пользователя
+                        и 500 токенов за того, кто начнёт вещать (он должен сначала заработать $20.00).
+                    </li>
+                    <li>
+                        <strong>20% от расходов</strong> — откройте
+                        <a href="https://chaturbate.com/affiliates?tour=LQps&amp;campaign=WIl8t&amp;track=default" target="_blank" rel="sponsored noopener">chaturbate.com/affiliates</a>,
+                        прокрутите в самый низ и скопируйте ссылку оттуда.
+                        Вы получаете 20% от всего, что потратят ваши пользователи.
+                    </li>
+                </ul>
+                <p>Ссылка выглядит примерно так:</p>
+                <div class="bg-white rounded border p-2 mb-3 overflow-auto">
+                    <span class="mono">https://chaturbate.com/in/?tour=LQps&amp;campaign=WIl8t&amp;track=default&amp;room=your_cam_name</span>
+                </div>
+                <p class="text-body-secondary"><small>
+                    Страницы и выплаты выше — то, что Chaturbate публиковал на момент написания,
+                    и с тех пор могло измениться. Актуальные условия смотрите на их сайте.
+                </small></p>
+
+                <h4>Моя партнёрская ссылка...</h4>
+                <div class="mb-3 col-md-8">
+                    <input type="text" class="form-control" id="affiliate-input"
+                           pattern="(?=[^\s]*[?&amp;]campaign=[^&amp;\s])(?=[^\s]*[?&amp;]tour=[^&amp;\s])(?=[^\s]*[?&amp;]track=[^&amp;\s])https://(?:[a-z0-9-]+\.)*chaturbate\.com/[^\s]*"
+                           placeholder="Вставьте вашу партнёрскую ссылку">
+                    <div class="invalid-feedback">
+                        Эта ссылка не подойдёт. Скопируйте её заново с одной из страниц выше.
+                        Если вы уверены, что она верна, напишите на
+                        <a href="mailto:siren.chat@gmail.com">siren.chat@gmail.com</a>.
+                    </div>
+                </div>
+
+                <p>Как администратор, отправьте эту команду в <span class="type-name-prepositional">вашем канале</span>.</p>
+                <div class="d-flex align-items-center bg-white rounded border p-2 mb-2 overflow-hidden">
+                    <code class="mono me-auto text-truncate">/affiliate@<span class="bot-username-bare">ChaturbateSirenBot</span> <span class="affiliate-placeholder">ВАША_ССЫЛКА</span></code>
+                    <button data-gated-by="affiliate" class="btn btn-outline-secondary btn-sm ms-2 copy-btn flex-shrink-0" style="visibility:hidden;" title="Скопировать"><i class="fa-solid fa-copy"></i></button>
+                </div>
+                <p>Чтобы убрать её позже, отправьте <span class="mono">/reset_affiliate@<span class="bot-username-bare">ChaturbateSirenBot</span></span>.</p>
+            </div>
         </div>
     </main>
     {{ template "footer" . }}
@@ -173,6 +224,8 @@
     var typeButtons = document.querySelectorAll("#type-selector .platform-btn");
     var platformButtons = document.querySelectorAll("#platform-selector .platform-btn");
     var usernameInput = document.getElementById("username-input");
+    var affiliateInput = document.getElementById("affiliate-input");
+    var affiliatePattern = affiliateInput && new RegExp("^(?:" + affiliateInput.pattern + ")$", "u");
 
     typeButtons.forEach(function(btn) {
         btn.addEventListener("click", function() {
@@ -193,6 +246,9 @@
     });
 
     usernameInput.addEventListener("input", function() { update(); });
+    if (affiliateInput) {
+        affiliateInput.addEventListener("input", function() { update(); });
+    }
 
     document.querySelectorAll(".copy-btn").forEach(function(btn) {
         btn.addEventListener("click", function() {
@@ -231,14 +287,25 @@
             el.textContent = username || addPlaceholders[selectedPlatform];
         });
 
-        var copyVisibility = username ? "visible" : "hidden";
-        document.querySelectorAll(".copy-btn").forEach(function(btn) {
-            btn.style.visibility = copyVisibility;
-        });
-
         document.getElementById("channel-steps").style.display = selectedType === "channel" ? "" : "none";
         document.getElementById("group-steps").style.display = selectedType === "group" ? "" : "none";
-        document.getElementById("bongacams-warning").style.display = selectedPlatform === "BongaCams" ? "" : "none";
+        document.querySelectorAll("[data-only-platform]").forEach(function(el) {
+            el.style.display = el.dataset.onlyPlatform === selectedPlatform ? "" : "none";
+        });
+
+        var affiliate = affiliateInput ? affiliateInput.value.trim() : "";
+        var affiliateOk = affiliate !== "" && affiliatePattern.test(affiliate.toLowerCase());
+        if (affiliateInput) {
+            affiliateInput.classList.toggle("is-invalid", affiliate !== "" && !affiliateOk);
+            document.querySelectorAll(".affiliate-placeholder").forEach(function(el) {
+                el.textContent = affiliateOk ? affiliate : "ВАША_ССЫЛКА";
+            });
+        }
+
+        var ready = { username: username !== "", affiliate: affiliateOk };
+        document.querySelectorAll("[data-gated-by]").forEach(function(btn) {
+            btn.style.visibility = ready[btn.dataset.gatedBy] ? "visible" : "hidden";
+        });
     }
 })();
 </script>
