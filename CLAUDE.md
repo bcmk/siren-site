@@ -115,6 +115,15 @@ When adding new Bootstrap utility classes to templates,
 always run `yarn build` afterward so PurgeCSS picks them up.
 Do not add classes to the PurgeCSS safelist — just rebuild.
 
+## Code Reviews
+
+- Number every finding (1, 2, 3, …) and always refer to it by that number
+- A number is assigned once and never reassigned — it belongs to that finding for the rest of the conversation
+- When findings are fixed, dropped, or reordered, keep the original numbers; retired numbers are not reused
+- New findings continue from the highest number issued so far, not from the current list length
+- Print every finding fully formatted: number, `file:line`, what is wrong, and the concrete consequence — never a bare label
+- List exactly the findings asked for — "what's open?" means open ones only, with no fixed, dropped, or withdrawn entries alongside them
+
 ## Git Conventions
 
 Use [Conventional Commits](https://www.conventionalcommits.org/) (e.g. `feat:`, `fix:`, `refactor:`, `style:`, `docs:`).
