@@ -59,7 +59,7 @@
         <div class="mb-3 col-sm-4">
             <input type="text" class="form-control" id="username-input" placeholder="YOUR_TWITCH_CHANNEL">
         </div>
-        <div id="bongacams-warning" class="p-3 mb-3 bg-warning" style="display:none;">
+        <div data-only-platform="BongaCams" class="p-3 mb-3 bg-warning" style="display:none;">
             Please don't use your display name or real name. Use the username you log in with!
         </div>
 
@@ -163,7 +163,9 @@
             btn.style.visibility = username ? "visible" : "hidden";
         });
 
-        document.getElementById("bongacams-warning").style.display = selectedPlatform === "BongaCams" ? "" : "none";
+        document.querySelectorAll("[data-only-platform]").forEach(function(el) {
+            el.style.display = el.dataset.onlyPlatform === selectedPlatform ? "" : "none";
+        });
 
         var advice = "Add the subscription link to your profile page.";
         if (selectedPlatform === "Chaturbate") {
