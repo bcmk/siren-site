@@ -161,7 +161,7 @@
 
                 <h4>My affiliate link is...</h4>
                 <div class="mb-3 col-md-8">
-                    <input type="text" class="form-control" id="affiliate-input"
+                    <input type="text" class="form-control affiliate-input" id="chaturbate-affiliate-input"
                            pattern="(?=[^\s]*[?&amp;]campaign=[^&amp;\s])(?=[^\s]*[?&amp;]tour=[^&amp;\s])(?=[^\s]*[?&amp;]track=[^&amp;\s])https://(?:[a-z0-9-]+\.)*chaturbate\.com/[^\s]*"
                            placeholder="Paste your affiliate link">
                     <div class="invalid-feedback">
@@ -177,6 +177,56 @@
                     <button data-gated-by="affiliate" class="btn btn-outline-secondary btn-sm ms-2 copy-btn flex-shrink-0" style="visibility:hidden;" title="Copy"><i class="fa-solid fa-copy"></i></button>
                 </div>
                 <p>To remove it later, send <span class="mono">/reset_affiliate@<span class="bot-username-bare">ChaturbateAlarmBot</span></span>.</p>
+            </div>
+
+            <div data-only-platform="Stripchat" style="display:none;">
+                <h4>Step 5 (optional): Earn referral commission</h4>
+                <p>
+                    On Stripchat, you can route these go-live posts through a referral link,
+                    so every fan you bring in earns money. There are two ways to do it.
+                </p>
+
+                <h5>You are a model</h5>
+                <p>
+                    Stripchat pays you for every user who registers through your own referral link.
+                    Send this command as an admin,
+                    and every model link the bot posts here becomes that model's referral link.
+                </p>
+                <div class="d-flex align-items-center bg-white rounded border p-2 mb-3 overflow-hidden">
+                    <code class="mono me-auto text-truncate">/affiliate@<span class="bot-username-bare">StripchatOnlineBot</span> streamer</code>
+                    <button class="btn btn-outline-secondary btn-sm ms-2 copy-btn flex-shrink-0" title="Copy"><i class="fa-solid fa-copy"></i></button>
+                </div>
+
+                <h5>You are an affiliate</h5>
+                <p>
+                    Open the
+                    <a href="https://stripcash.com/links-and-creatives/links-builder" target="_blank" rel="sponsored noopener">StripCash links builder</a>
+                    and copy the Final url.
+                    Set a campaign and source there if you want — they come along.
+                </p>
+                <p>The link looks something like this:</p>
+                <div class="bg-white rounded border p-2 mb-3 overflow-auto">
+                    <span class="mono">https://go.whitetrafsa.com?userId=d100c22f4c1ce24c2706ec4ac744d0bbd9a2a46fc437add588196a2d7aa9db07</span>
+                </div>
+
+                <h4>My affiliate link is...</h4>
+                <div class="mb-3 col-md-8">
+                    <input type="text" class="form-control affiliate-input" id="stripchat-affiliate-input"
+                           pattern="(?=[^\s]*[?&amp;]userId=[^&amp;\s])https://[^\s]*"
+                           placeholder="Paste your affiliate link">
+                    <div class="invalid-feedback">
+                        This link will not work. Copy the Final url again from the links builder.
+                        If you are sure it is right, write to
+                        <a href="mailto:siren.chat@gmail.com">siren.chat@gmail.com</a>.
+                    </div>
+                </div>
+
+                <p>As an admin, send this command in your <span class="type-name">channel</span>.</p>
+                <div class="d-flex align-items-center bg-white rounded border p-2 mb-2 overflow-hidden">
+                    <code class="mono me-auto text-truncate">/affiliate@<span class="bot-username-bare">StripchatOnlineBot</span> <span class="affiliate-placeholder">YOUR_LINK</span></code>
+                    <button data-gated-by="affiliate" class="btn btn-outline-secondary btn-sm ms-2 copy-btn flex-shrink-0" style="visibility:hidden;" title="Copy"><i class="fa-solid fa-copy"></i></button>
+                </div>
+                <p>To remove it later, send <span class="mono">/reset_affiliate@<span class="bot-username-bare">StripchatOnlineBot</span></span>.</p>
             </div>
         </div>
     </main>
@@ -219,8 +269,16 @@
     var typeButtons = document.querySelectorAll("#type-selector .platform-btn");
     var platformButtons = document.querySelectorAll("#platform-selector .platform-btn");
     var usernameInput = document.getElementById("username-input");
-    var affiliateInput = document.getElementById("affiliate-input");
-    var affiliatePattern = affiliateInput && new RegExp("^(?:" + affiliateInput.pattern + ")$", "u");
+    // One per platform that offers an affiliate link, each with its own pattern.
+    var affiliateFields = Array.prototype.map.call(
+        document.querySelectorAll(".affiliate-input"),
+        function(input) {
+            return {
+                input: input,
+                block: input.closest("[data-only-platform]"),
+                pattern: new RegExp("^(?:" + input.pattern + ")$", "u")
+            };
+        });
 
     typeButtons.forEach(function(btn) {
         btn.addEventListener("click", function() {
@@ -241,9 +299,9 @@
     });
 
     usernameInput.addEventListener("input", function() { update(); });
-    if (affiliateInput) {
-        affiliateInput.addEventListener("input", function() { update(); });
-    }
+    affiliateFields.forEach(function(field) {
+        field.input.addEventListener("input", function() { update(); });
+    });
 
     document.querySelectorAll(".copy-btn").forEach(function(btn) {
         btn.addEventListener("click", function() {
@@ -285,14 +343,17 @@
             el.style.display = el.dataset.onlyPlatform === selectedPlatform ? "" : "none";
         });
 
-        var affiliate = affiliateInput ? affiliateInput.value.trim() : "";
-        var affiliateOk = affiliate !== "" && affiliatePattern.test(affiliate.toLowerCase());
-        if (affiliateInput) {
-            affiliateInput.classList.toggle("is-invalid", affiliate !== "" && !affiliateOk);
-            document.querySelectorAll(".affiliate-placeholder").forEach(function(el) {
-                el.textContent = affiliateOk ? affiliate : "YOUR_LINK";
+        // Each field keeps its own validity; only the selected platform's gates its copy button.
+        var affiliateOk = false;
+        affiliateFields.forEach(function(field) {
+            var affiliate = field.input.value.trim();
+            var ok = affiliate !== "" && field.pattern.test(affiliate);
+            field.input.classList.toggle("is-invalid", affiliate !== "" && !ok);
+            field.block.querySelectorAll(".affiliate-placeholder").forEach(function(el) {
+                el.textContent = ok ? affiliate : "YOUR_LINK";
             });
-        }
+            if (field.block.dataset.onlyPlatform === selectedPlatform) affiliateOk = ok;
+        });
 
         var ready = { username: username !== "", affiliate: affiliateOk };
         document.querySelectorAll("[data-gated-by]").forEach(function(btn) {

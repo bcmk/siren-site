@@ -163,7 +163,7 @@
 
                 <h4>Моя партнёрская ссылка...</h4>
                 <div class="mb-3 col-md-8">
-                    <input type="text" class="form-control" id="affiliate-input"
+                    <input type="text" class="form-control affiliate-input" id="chaturbate-affiliate-input"
                            pattern="(?=[^\s]*[?&amp;]campaign=[^&amp;\s])(?=[^\s]*[?&amp;]tour=[^&amp;\s])(?=[^\s]*[?&amp;]track=[^&amp;\s])https://(?:[a-z0-9-]+\.)*chaturbate\.com/[^\s]*"
                            placeholder="Вставьте вашу партнёрскую ссылку">
                     <div class="invalid-feedback">
@@ -179,6 +179,57 @@
                     <button data-gated-by="affiliate" class="btn btn-outline-secondary btn-sm ms-2 copy-btn flex-shrink-0" style="visibility:hidden;" title="Скопировать"><i class="fa-solid fa-copy"></i></button>
                 </div>
                 <p>Чтобы убрать её позже, отправьте <span class="mono">/reset_affiliate@<span class="bot-username-bare">ChaturbateSirenBot</span></span>.</p>
+            </div>
+
+            <div data-only-platform="Stripchat" style="display:none;">
+                <h4>Шаг 5 (необязательный): Зарабатывайте реферальную комиссию</h4>
+                <p>
+                    На Stripchat вы можете пропускать эти оповещения через реферальную ссылку,
+                    чтобы каждый приведённый пользователь приносил доход.
+                    Это можно сделать двумя способами.
+                </p>
+
+                <h5>Вы модель</h5>
+                <p>
+                    Stripchat платит вам за каждого, кто регистрируется по вашей реферальной ссылке.
+                    Отправьте эту команду как администратор, и каждая ссылка на модель,
+                    которую публикует бот, станет её реферальной ссылкой.
+                </p>
+                <div class="d-flex align-items-center bg-white rounded border p-2 mb-3 overflow-hidden">
+                    <code class="mono me-auto text-truncate">/affiliate@<span class="bot-username-bare">StripchatSirenBot</span> streamer</code>
+                    <button class="btn btn-outline-secondary btn-sm ms-2 copy-btn flex-shrink-0" title="Скопировать"><i class="fa-solid fa-copy"></i></button>
+                </div>
+
+                <h5>Вы партнёр</h5>
+                <p>
+                    Откройте
+                    <a href="https://stripcash.com/links-and-creatives/links-builder" target="_blank" rel="sponsored noopener">конструктор ссылок StripCash</a>
+                    и скопируйте Final url.
+                    При желании задайте там кампанию и источник — они сохранятся.
+                </p>
+                <p>Ссылка выглядит примерно так:</p>
+                <div class="bg-white rounded border p-2 mb-3 overflow-auto">
+                    <span class="mono">https://go.whitetrafsa.com?userId=d100c22f4c1ce24c2706ec4ac744d0bbd9a2a46fc437add588196a2d7aa9db07</span>
+                </div>
+
+                <h4>Моя партнёрская ссылка...</h4>
+                <div class="mb-3 col-md-8">
+                    <input type="text" class="form-control affiliate-input" id="stripchat-affiliate-input"
+                           pattern="(?=[^\s]*[?&amp;]userId=[^&amp;\s])https://[^\s]*"
+                           placeholder="Вставьте вашу партнёрскую ссылку">
+                    <div class="invalid-feedback">
+                        Эта ссылка не подойдёт. Скопируйте Final url заново в конструкторе ссылок.
+                        Если вы уверены, что она верна, напишите на
+                        <a href="mailto:siren.chat@gmail.com">siren.chat@gmail.com</a>.
+                    </div>
+                </div>
+
+                <p>Как администратор, отправьте эту команду в <span class="type-name-prepositional">вашем канале</span>.</p>
+                <div class="d-flex align-items-center bg-white rounded border p-2 mb-2 overflow-hidden">
+                    <code class="mono me-auto text-truncate">/affiliate@<span class="bot-username-bare">StripchatSirenBot</span> <span class="affiliate-placeholder">ВАША_ССЫЛКА</span></code>
+                    <button data-gated-by="affiliate" class="btn btn-outline-secondary btn-sm ms-2 copy-btn flex-shrink-0" style="visibility:hidden;" title="Скопировать"><i class="fa-solid fa-copy"></i></button>
+                </div>
+                <p>Чтобы убрать её позже, отправьте <span class="mono">/reset_affiliate@<span class="bot-username-bare">StripchatSirenBot</span></span>.</p>
             </div>
         </div>
     </main>
@@ -224,8 +275,16 @@
     var typeButtons = document.querySelectorAll("#type-selector .platform-btn");
     var platformButtons = document.querySelectorAll("#platform-selector .platform-btn");
     var usernameInput = document.getElementById("username-input");
-    var affiliateInput = document.getElementById("affiliate-input");
-    var affiliatePattern = affiliateInput && new RegExp("^(?:" + affiliateInput.pattern + ")$", "u");
+    // One per platform that offers an affiliate link, each with its own pattern.
+    var affiliateFields = Array.prototype.map.call(
+        document.querySelectorAll(".affiliate-input"),
+        function(input) {
+            return {
+                input: input,
+                block: input.closest("[data-only-platform]"),
+                pattern: new RegExp("^(?:" + input.pattern + ")$", "u")
+            };
+        });
 
     typeButtons.forEach(function(btn) {
         btn.addEventListener("click", function() {
@@ -246,9 +305,9 @@
     });
 
     usernameInput.addEventListener("input", function() { update(); });
-    if (affiliateInput) {
-        affiliateInput.addEventListener("input", function() { update(); });
-    }
+    affiliateFields.forEach(function(field) {
+        field.input.addEventListener("input", function() { update(); });
+    });
 
     document.querySelectorAll(".copy-btn").forEach(function(btn) {
         btn.addEventListener("click", function() {
@@ -293,14 +352,17 @@
             el.style.display = el.dataset.onlyPlatform === selectedPlatform ? "" : "none";
         });
 
-        var affiliate = affiliateInput ? affiliateInput.value.trim() : "";
-        var affiliateOk = affiliate !== "" && affiliatePattern.test(affiliate.toLowerCase());
-        if (affiliateInput) {
-            affiliateInput.classList.toggle("is-invalid", affiliate !== "" && !affiliateOk);
-            document.querySelectorAll(".affiliate-placeholder").forEach(function(el) {
-                el.textContent = affiliateOk ? affiliate : "ВАША_ССЫЛКА";
+        // Each field keeps its own validity; only the selected platform's gates its copy button.
+        var affiliateOk = false;
+        affiliateFields.forEach(function(field) {
+            var affiliate = field.input.value.trim();
+            var ok = affiliate !== "" && field.pattern.test(affiliate);
+            field.input.classList.toggle("is-invalid", affiliate !== "" && !ok);
+            field.block.querySelectorAll(".affiliate-placeholder").forEach(function(el) {
+                el.textContent = ok ? affiliate : "ВАША_ССЫЛКА";
             });
-        }
+            if (field.block.dataset.onlyPlatform === selectedPlatform) affiliateOk = ok;
+        });
 
         var ready = { username: username !== "", affiliate: affiliateOk };
         document.querySelectorAll("[data-gated-by]").forEach(function(btn) {
