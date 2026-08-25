@@ -232,6 +232,56 @@
                 </div>
                 <p>Чтобы убрать её позже, отправьте <span class="mono">/reset_affiliate@<span class="bot-username-bare">StripchatSirenBot</span></span>.</p>
             </div>
+
+            <div data-only-platform="BongaCams" style="display:none;">
+                <h4>Шаг 5 (необязательный): Зарабатывайте реферальную комиссию</h4>
+                <p>
+                    На BongaCams вы можете пропускать эти оповещения через свою реферальную ссылку,
+                    чтобы каждый приведённый пользователь приносил вам комиссию.
+                    Это можно сделать двумя способами.
+                </p>
+
+                <h5>Вы модель</h5>
+                <p>
+                    Откройте страницу
+                    <a href="https://bongamodels.com/promo-tools/members" target="_blank" rel="sponsored noopener">Referral Program / Member Referral</a>
+                    на BongaModels и скопируйте ссылку из раздела <strong>To refer members</strong>.
+                </p>
+                <p>Ссылка выглядит примерно так:</p>
+                <div class="bg-white rounded border p-2 mb-3 overflow-auto">
+                    <span class="mono">https://bongacams.com?fuid=241616110</span>
+                </div>
+
+                <h5>Вы партнёр</h5>
+                <p>
+                    Откройте страницу
+                    <a href="https://bongacash.com/promo/direct-link" target="_blank" rel="sponsored noopener">Direct link</a>
+                    на BongaCash и скопируйте ссылку там.
+                </p>
+                <p>Ссылка выглядит примерно так:</p>
+                <div class="bg-white rounded border p-2 mb-3 overflow-auto">
+                    <span class="mono">https://bongacams4.com/track?v=2&amp;c=673886</span>
+                </div>
+
+                <h4>Моя партнёрская ссылка...</h4>
+                <div class="mb-3 col-md-8">
+                    <input type="text" class="form-control affiliate-input" id="bongacams-affiliate-input"
+                           pattern="(?=[^\s]*[?&amp;](?:fuid|c)=[0-9])https://(?:[a-z0-9-]+\.)*bongacams[0-9]*\.com[/?][^\s]*"
+                           placeholder="Вставьте вашу партнёрскую ссылку">
+                    <div class="invalid-feedback">
+                        Эта ссылка не подойдёт. Скопируйте её заново с одной из страниц выше.
+                        Если вы уверены, что она верна, напишите на
+                        <a href="mailto:siren.chat@gmail.com">siren.chat@gmail.com</a>.
+                    </div>
+                </div>
+
+                <p>Как администратор, отправьте эту команду в <span class="type-name-prepositional">вашем канале</span>.</p>
+                <div class="d-flex align-items-center bg-white rounded border p-2 mb-2 overflow-hidden">
+                    <code class="mono me-auto text-truncate">/affiliate@<span class="bot-username-bare">BongaCamsSirenBot</span> <span class="affiliate-placeholder">ВАША_ССЫЛКА</span></code>
+                    <button data-gated-by="affiliate" class="btn btn-outline-secondary btn-sm ms-2 copy-btn flex-shrink-0" style="visibility:hidden;" title="Скопировать"><i class="fa-solid fa-copy"></i></button>
+                </div>
+                <p>Чтобы убрать её позже, отправьте <span class="mono">/reset_affiliate@<span class="bot-username-bare">BongaCamsSirenBot</span></span>.</p>
+            </div>
         </div>
     </main>
     {{ template "footer" . }}

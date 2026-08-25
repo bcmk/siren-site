@@ -229,6 +229,55 @@
                 </div>
                 <p>To remove it later, send <span class="mono">/reset_affiliate@<span class="bot-username-bare">StripchatOnlineBot</span></span>.</p>
             </div>
+
+            <div data-only-platform="BongaCams" style="display:none;">
+                <h4>Step 5 (optional): Earn referral commission</h4>
+                <p>
+                    On BongaCams, you can route these go-live posts through your own referral link,
+                    so every fan you bring in earns you commission. There are two ways to do it.
+                </p>
+
+                <h5>You are a model</h5>
+                <p>
+                    Open the
+                    <a href="https://bongamodels.com/promo-tools/members" target="_blank" rel="sponsored noopener">Referral Program / Member Referral</a>
+                    page on BongaModels and copy a link under <strong>To refer members</strong>.
+                </p>
+                <p>The link looks something like this:</p>
+                <div class="bg-white rounded border p-2 mb-3 overflow-auto">
+                    <span class="mono">https://bongacams.com?fuid=241616110</span>
+                </div>
+
+                <h5>You are an affiliate</h5>
+                <p>
+                    Open the
+                    <a href="https://bongacash.com/promo/direct-link" target="_blank" rel="sponsored noopener">Direct link</a>
+                    page on BongaCash and copy the link there.
+                </p>
+                <p>The link looks something like this:</p>
+                <div class="bg-white rounded border p-2 mb-3 overflow-auto">
+                    <span class="mono">https://bongacams4.com/track?v=2&amp;c=673886</span>
+                </div>
+
+                <h4>My affiliate link is...</h4>
+                <div class="mb-3 col-md-8">
+                    <input type="text" class="form-control affiliate-input" id="bongacams-affiliate-input"
+                           pattern="(?=[^\s]*[?&amp;](?:fuid|c)=[0-9])https://(?:[a-z0-9-]+\.)*bongacams[0-9]*\.com[/?][^\s]*"
+                           placeholder="Paste your affiliate link">
+                    <div class="invalid-feedback">
+                        This link will not work. Copy it again from one of the pages above.
+                        If you are sure it is right, write to
+                        <a href="mailto:siren.chat@gmail.com">siren.chat@gmail.com</a>.
+                    </div>
+                </div>
+
+                <p>As an admin, send this command in your <span class="type-name">channel</span>.</p>
+                <div class="d-flex align-items-center bg-white rounded border p-2 mb-2 overflow-hidden">
+                    <code class="mono me-auto text-truncate">/affiliate@<span class="bot-username-bare">BongaCamsOnlineBot</span> <span class="affiliate-placeholder">YOUR_LINK</span></code>
+                    <button data-gated-by="affiliate" class="btn btn-outline-secondary btn-sm ms-2 copy-btn flex-shrink-0" style="visibility:hidden;" title="Copy"><i class="fa-solid fa-copy"></i></button>
+                </div>
+                <p>To remove it later, send <span class="mono">/reset_affiliate@<span class="bot-username-bare">BongaCamsOnlineBot</span></span>.</p>
+            </div>
         </div>
     </main>
     {{ template "footer" . }}
