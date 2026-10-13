@@ -5,4 +5,5 @@ cur="$(dirname "$(readlink -f "$0")")"
 cd "$cur/.."
 
 SIREN_SITE_VERSION="${1:-$(git describe --tags)}"
+SIREN_SITE_VERSION="${SIREN_SITE_VERSION#v}"
 go build -o cmd/site/site -ldflags="-s -X 'github.com/bcmk/siren/lib/cmdlib.Version=${SIREN_SITE_VERSION}'" ./cmd/site
