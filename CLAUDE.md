@@ -31,8 +31,10 @@ yarn watch          # Development mode with file watching
 go build -o cmd/site/site ./cmd/site          # Build Go binary into cmd/site/
 cd cmd/site && ./site -c site.ignore.yaml     # Run dev server locally
 scripts/build-site                            # Build with version from git describe
-scripts/publish                               # Docker build and push (version from git tag)
 ```
+
+The image is built from `Dockerfile` and published from outside this repository,
+versioned by `git describe --tags`.
 
 ### Linting
 ```bash
