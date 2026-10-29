@@ -7,6 +7,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Prefer relative paths
 - If you changed directory to run something, change back to the repo root after
 - Use real em-dash (—) where grammar requires it
+- If `.claude/todo/` exists, its `TODO.md` holds the open work;
+  follow its `CLAUDE.md` when editing it.
 
 ## Project Overview
 
